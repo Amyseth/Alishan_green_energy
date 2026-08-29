@@ -29,8 +29,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestQuoteClick }) => {
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
     { name: 'Products', path: '/products' },
-    { name: 'R&D & Certifications', path: '/rd-certifications' },
+    { name: 'Gallery', path: '/gallery' },
+    { name: 'R&D & Lab', path: '/rd-certifications' },
     { name: 'Sustainability', path: '/sustainability' },
+    { name: 'Career', path: '/career' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -92,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestQuoteClick }) => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-3.5 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                  className={`px-2.5 xl:px-3.5 py-1.5 xl:py-2 rounded-md text-xs xl:text-sm font-medium transition-all duration-200 ${
                     isActive
                       ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 shadow-sm'
                       : 'text-slate-300 hover:text-white hover:bg-slate-800/60'

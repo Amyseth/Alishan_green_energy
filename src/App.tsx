@@ -11,6 +11,8 @@ import Products from './pages/Products';
 import RdCertifications from './pages/RdCertifications';
 import Sustainability from './pages/Sustainability';
 import Contact from './pages/Contact';
+import Gallery from './pages/Gallery';
+import Career from './pages/Career';
 
 export const App: React.FC = () => {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -60,6 +62,8 @@ export const App: React.FC = () => {
               <Sustainability onRequestQuote={() => handleOpenQuoteModal()} />
             }
           />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/career" element={<Career />} />
           <Route path="/contact" element={<Contact />} />
 
           {/* Catch-all fallback */}
