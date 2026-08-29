@@ -61,10 +61,23 @@ export async function submitQuoteInquiry(data: QuoteFormData): Promise<Submissio
   }
 
   // Graceful development/reviewer fallback if keys are pending in .env
-  console.info(
-    '[Alishan Supabase Info]: Supabase credentials (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY) are not set or contain placeholder values. Operating in simulated submission mode.',
-    data
-  );
+  console.group('%c[Alishan Green Energy] 📥 New Inquiry Submitted (Demo Mode)', 'color: #10B981; font-weight: bold; font-size: 13px;');
+  console.info('To link with your live PostgreSQL database, configure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env');
+  console.table(data);
+  console.groupEnd();
+
+  // Save to browser localStorage so user can inspect it at any time
+  try {
+    const existing = JSON.parse(localStorage.getItem('alishan_submitted_inquiries') || '[]');
+    existing.unshift({
+      id: 'demo-' + Date.now(),
+      created_at: new Date().toISOString(),
+      ...data,
+    });
+    localStorage.setItem('alishan_submitted_inquiries', JSON.stringify(existing.slice(0, 50)));
+  } catch (e) {
+    console.error('Failed to save to localStorage:', e);
+  }
 
   // Artificial realistic delay for UI responsiveness
   await new Promise((resolve) => setTimeout(resolve, 800));
@@ -72,6 +85,14 @@ export async function submitQuoteInquiry(data: QuoteFormData): Promise<Submissio
   return {
     success: true,
     isMock: true,
-    message: 'Inquiry received in Demo Mode. (To link with live PostgreSQL, configure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in your .env file).',
+    message: 'Inquiry received in Demo Mode & saved to local storage. (Link your live Supabase in .env to view in PostgreSQL Table Editor).',
   };
+}
+
+export function getLocalSubmissions(): Array<QuoteFormData & { id: string; created_at: string }> {
+  try {
+    return JSON.parse(localStorage.getItem('alishan_submitted_inquiries') || '[]');
+  } catch {
+    return [];
+  }
 }

@@ -133,11 +133,23 @@ export const QuoteForm: React.FC<QuoteFormProps> = ({
         </p>
 
         {successResponse.isMock && (
-          <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 text-xs text-amber-300 max-w-md mx-auto mb-6 text-left flex items-start space-x-2">
-            <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-            <div>
-              <span className="font-semibold block">Supabase Connection Notice:</span>
-              Your input validated successfully in demo fallback mode. To save records to your live PostgreSQL database, supply <code className="bg-black/40 px-1 py-0.5 rounded">VITE_SUPABASE_URL</code> and <code className="bg-black/40 px-1 py-0.5 rounded">VITE_SUPABASE_ANON_KEY</code> in <code className="bg-black/40 px-1 py-0.5 rounded">.env</code>.
+          <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 text-xs text-amber-300 max-w-lg mx-auto mb-6 text-left space-y-2">
+            <div className="flex items-start space-x-2">
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+              <div>
+                <span className="font-semibold block text-amber-200">Demo Mode Active:</span>
+                Your submission was captured and saved to browser <code className="bg-black/50 text-amber-300 px-1 py-0.5 rounded">localStorage</code> and logged in the <code className="bg-black/50 text-amber-300 px-1 py-0.5 rounded">Console (F12)</code>.
+              </div>
+            </div>
+            <div className="bg-slate-950/80 p-3 rounded-lg border border-slate-800 text-[11px] font-mono text-slate-300 overflow-x-auto">
+              <div className="text-emerald-400 font-bold mb-1">✓ Saved Payload:</div>
+              <div>Name: <span className="text-white">{formData.fullName}</span></div>
+              <div>Email: <span className="text-white">{formData.email}</span></div>
+              <div>Company: <span className="text-white">{formData.companyName || 'N/A'}</span></div>
+              <div>Phone: <span className="text-white">{formData.phone}</span></div>
+              <div>Product: <span className="text-emerald-300">{formData.productInterest}</span></div>
+              <div>Volume: <span className="text-white">{formData.estimatedVolume || 'N/A'}</span></div>
+              {formData.message && <div>Message: <span className="text-slate-400">"{formData.message}"</span></div>}
             </div>
           </div>
         )}
