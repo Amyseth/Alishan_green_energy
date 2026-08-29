@@ -1,0 +1,88 @@
+export const COMPANY_INFO = {
+  name: 'Alishan Green Energy Pvt. Ltd.',
+  shortName: 'Alishan Green Energy',
+  tagline: 'Alishan Green Energy — Manifests Into Solar Products & Solutions',
+  subTagline: 'Pioneering domestic solar PV material manufacturing with cutting-edge polymer engineering and NABL-accredited precision testing.',
+  vision: "Driving India's 'Atma Nirbhar Bharat' mission through complete domestic indigenisation of Solar/PV module materials.",
+  foundedYear: '2020',
+  headOffice: {
+    addressLine1: 'F101, Sky Villas, A175, Sector 8A',
+    addressLine2: 'Kamal Vihar, Raipur',
+    stateAndPin: 'Chhattisgarh - 492015',
+    country: 'India',
+    full: 'F101, Sky Villas, A175, Sector 8A, Kamal Vihar, Raipur, Chhattisgarh - 492015, India',
+  },
+  factory: {
+    addressLine1: 'Khasra No: 20, Village: Seoni',
+    addressLine2: 'Raipur',
+    stateAndPin: 'Chhattisgarh - 492101',
+    country: 'India',
+    full: 'Khasra No: 20, Village: Seoni, Raipur, Chhattisgarh - 492101, India',
+  },
+  contact: {
+    phone: '+91 91712 00097',
+    email: 'info@alishangreenenergy.com',
+    supportEmail: 'technical@alishangreenenergy.com',
+    salesEmail: 'sales@alishangreenenergy.com',
+    workingHours: 'Monday - Saturday: 9:00 AM - 6:30 PM IST',
+  },
+  certifications: [
+    {
+      id: 'nabl',
+      code: 'NABL TC 15544',
+      name: 'NABL Accredited Testing Laboratory',
+      issuingBody: 'National Accreditation Board for Testing and Calibration Laboratories',
+      certificateNo: 'TC 15544',
+      description: 'In-house state-of-the-art testing facility compliant with ISO/IEC 17025 for comprehensive mechanical, chemical, and electrical analysis of PV encapsulants & backsheets.',
+      badgeText: 'NABL TC 15544 Accredited',
+    },
+    {
+      id: 'iso-9001',
+      code: 'ISO 9001:2015',
+      name: 'Quality Management System',
+      issuingBody: 'International Organization for Standardization',
+      description: 'Rigorous process control, zero-defect defect prevention, and consistent polymer formulation across multi-GW annual extrusion capacity.',
+      badgeText: 'ISO 9001:2015 Certified',
+    },
+    {
+      id: 'iso-14001',
+      code: 'ISO 14001:2015',
+      name: 'Environmental Management System',
+      issuingBody: 'International Organization for Standardization',
+      description: 'Commitment to sustainable manufacturing, reduced volatile organic emissions, zero-waste recycling, and minimized carbon footprint.',
+      badgeText: 'ISO 14001:2015 Certified',
+    },
+    {
+      id: 'iso-45001',
+      code: 'ISO 45001:2018',
+      name: 'Occupational Health and Safety',
+      issuingBody: 'International Organization for Standardization',
+      description: 'Stringent workplace safety measures, advanced cleanroom standards, and continuous safety training for manufacturing personnel.',
+      badgeText: 'ISO 45001:2018 Certified',
+    },
+  ],
+  keyMetrics: [
+    { label: 'Annual Production Capacity', value: '3.5+ GW', change: 'Expanding to 5 GW' },
+    { label: 'Lab Accreditation', value: 'NABL TC 15544', change: 'In-House Testing' },
+    { label: 'Domestic Indigenisation', value: '100%', change: 'Atma Nirbhar Bharat' },
+    { label: 'Module Durability Rating', value: '25+ Years', change: 'Accelerated Aging Tested' },
+  ],
+  coreValues: [
+    {
+      title: 'Indigenous Innovation',
+      desc: 'Eliminating dependency on imported raw materials by developing world-class polymeric encapsulants and backsheets in central India.',
+    },
+    {
+      title: 'Zero-Defect Quality',
+      desc: 'Deploying laser micrometer thickness monitors, continuous optical vision inspection, and batch-wise NABL testing.',
+    },
+    {
+      title: 'Future-Proof Compatibility',
+      desc: 'Continuous R&D tailoring formulations specifically for high-efficiency n-type TOPCon, HJT, and bifacial solar modules.',
+    },
+    {
+      title: 'Environmental Stewardship',
+      desc: 'Practicing green manufacturing through low-energy extrusion lines, closed-loop cooling, and recyclable polymers.',
+    },
+  ],
+};

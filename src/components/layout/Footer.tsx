@@ -1,0 +1,220 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Sun,
+  MapPin,
+  Phone,
+  Mail,
+  ShieldCheck,
+  Award,
+  ArrowUpRight,
+  ExternalLink,
+} from 'lucide-react';
+import { COMPANY_INFO } from '../../data/company';
+
+export const Footer: React.FC = () => {
+  return (
+    <footer className="bg-[#070F1E] border-t border-slate-800/80 text-slate-400 relative overflow-hidden">
+      {/* Top ambient glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent"></div>
+
+      {/* Main Footer Container */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+          {/* Column 1: Company Profile (Span 2) */}
+          <div className="lg:col-span-2 space-y-4">
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                <Sun className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <div className="text-xl font-bold tracking-tight text-white flex items-center">
+                  <span>ALISHAN</span>
+                  <span className="text-emerald-400 ml-1.5 font-extrabold">GREEN ENERGY</span>
+                </div>
+                <p className="text-[10px] text-slate-400 font-medium tracking-wider uppercase">
+                  Pvt. Ltd. | Solar PV Material Technologies
+                </p>
+              </div>
+            </Link>
+
+            <p className="text-sm text-slate-300 leading-relaxed max-w-md">
+              {COMPANY_INFO.tagline}. Leading the domestic indigenisation of solar PV module encapsulants (EVA / POE / EPE) and advanced backsheet films under the Make in India and Atma Nirbhar Bharat initiatives.
+            </p>
+
+            {/* Certifications Badge Pills */}
+            <div className="pt-2 flex flex-wrap gap-2">
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
+                <Award className="w-3.5 h-3.5 mr-1" />
+                NABL TC 15544
+              </span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
+                <ShieldCheck className="w-3.5 h-3.5 mr-1 text-amber-400" />
+                ISO 9001:2015
+              </span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
+                ISO 14001:2015
+              </span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
+                ISO 45001:2018
+              </span>
+            </div>
+          </div>
+
+          {/* Column 2: Quick Links */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-white tracking-wider uppercase">
+              Navigation
+            </h3>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <Link to="/" className="hover:text-emerald-400 transition-colors flex items-center group">
+                  Home
+                  <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-emerald-400 transition-colors flex items-center group">
+                  About Us
+                  <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+              </li>
+              <li>
+                <Link to="/products" className="hover:text-emerald-400 transition-colors flex items-center group">
+                  Product Catalog
+                  <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+              </li>
+              <li>
+                <Link to="/rd-certifications" className="hover:text-emerald-400 transition-colors flex items-center group">
+                  R&D & Lab Testing
+                  <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+              </li>
+              <li>
+                <Link to="/sustainability" className="hover:text-emerald-400 transition-colors flex items-center group">
+                  Sustainability
+                  <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-emerald-400 transition-colors flex items-center group text-emerald-400 font-medium">
+                  Request A Quote
+                  <ArrowUpRight className="w-3 h-3 ml-1 opacity-100" />
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Products */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-white tracking-wider uppercase">
+              Solar PV Products
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li className="text-xs font-semibold text-emerald-400 uppercase tracking-wider pt-1">
+                Encapsulants
+              </li>
+              <li>
+                <Link to="/products?cat=encapsulants" className="hover:text-white transition-colors">
+                  Alishan FC (Fast Cure EVA)
+                </Link>
+              </li>
+              <li>
+                <Link to="/products?cat=encapsulants" className="hover:text-white transition-colors">
+                  Alishan UFC (Ultra-Fast Cure)
+                </Link>
+              </li>
+              <li>
+                <Link to="/products?cat=encapsulants" className="hover:text-white transition-colors">
+                  Alishan POE & Co-extruded EPE
+                </Link>
+              </li>
+              <li>
+                <Link to="/products?cat=encapsulants" className="hover:text-white transition-colors">
+                  Alishan EPE-NT & Low-Acid EVA
+                </Link>
+              </li>
+              <li>
+                <Link to="/products?cat=encapsulants" className="hover:text-white transition-colors">
+                  Alishan EPE-DC (UV Down-Conversion)
+                </Link>
+              </li>
+              <li className="text-xs font-semibold text-emerald-400 uppercase tracking-wider pt-2">
+                Backsheets
+              </li>
+              <li>
+                <Link to="/products?cat=backsheets" className="hover:text-white transition-colors">
+                  Backpro Series (KPC / CPC / PPC / -T)
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Manufacturing Facilities & Contact */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-white tracking-wider uppercase">
+              Locations & Contact
+            </h3>
+            <div className="space-y-3 text-xs leading-relaxed">
+              <div className="flex items-start space-x-2.5">
+                <MapPin className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold text-white block">Head Office:</span>
+                  <span>{COMPANY_INFO.headOffice.full}</span>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-2.5">
+                <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold text-white block">Factory Plant:</span>
+                  <span>{COMPANY_INFO.factory.full}</span>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-2.5 pt-2">
+                <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
+                <a
+                  href={`tel:${COMPANY_INFO.contact.phone.replace(/\s+/g, '')}`}
+                  className="hover:text-white transition-colors font-medium text-slate-200"
+                >
+                  {COMPANY_INFO.contact.phone}
+                </a>
+              </div>
+
+              <div className="flex items-center space-x-2.5">
+                <Mail className="w-4 h-4 text-emerald-400 shrink-0" />
+                <a
+                  href={`mailto:${COMPANY_INFO.contact.email}`}
+                  className="hover:text-white transition-colors text-slate-200"
+                >
+                  {COMPANY_INFO.contact.email}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+          <div className="flex items-center space-x-2">
+            <span>© {new Date().getFullYear()} {COMPANY_INFO.name} All rights reserved.</span>
+          </div>
+
+          <div className="flex items-center space-x-6">
+            <span className="inline-flex items-center text-emerald-400">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 mr-2"></span>
+              Proudly Manufactured in Chhattisgarh, India
+            </span>
+            <Link to="/contact" className="hover:text-white transition-colors">
+              Terms & Technical Support
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
