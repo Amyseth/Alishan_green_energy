@@ -26,7 +26,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: 'mfg-1',
     title: 'High-Precision Automated Extrusion Line',
     category: 'manufacturing',
-    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2025/01/5P1A0159.jpg',
+    image: '/images/gallery/extrusion-line-1.jpg',
     description: 'State-of-the-art multi-layer continuous polymer extrusion lines equipped with automatic beta-gauge thickness control.',
     tag: 'Extrusion Line 1'
   },
@@ -34,7 +34,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: 'lab-1',
     title: 'In-House NABL Accredited Testing Facility',
     category: 'laboratory',
-    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2025/01/01.jpg',
+    image: '/images/gallery/nabl-lab-facility.jpg',
     description: 'NABL TC 15544 certified laboratory housing spectrophotometers, gel content extraction baths, and thermal shrinkage testers.',
     tag: 'NABL TC 15544'
   },
@@ -42,7 +42,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: 'cleanroom-1',
     title: 'Precision Slitting & Cleanroom Finishing',
     category: 'cleanroom',
-    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2026/07/AVMB0008.jpg',
+    image: '/images/gallery/cleanroom-slitting.jpg',
     description: 'ISO Class 7 cleanroom environment with controlled humidity and temperature for automated roll slitting and foil sealing.',
     tag: 'Cleanroom Packaging'
   },
@@ -50,7 +50,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: 'expo-1',
     title: 'Renewable Energy India Expo (REI) Pavilion',
     category: 'exhibitions',
-    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2025/01/REI-EXPO.jpg',
+    image: '/images/gallery/rei-expo-pavilion.jpg',
     description: 'Alishan Green Energy showcasing next-generation POE & Ultra-Fast Cure EVA films to international solar module manufacturers.',
     tag: 'REI Expo'
   },
@@ -58,7 +58,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: 'expo-2',
     title: 'REI 2024 Industry Showcase & Technology Exchange',
     category: 'exhibitions',
-    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2025/01/REI-2024-1.jpg',
+    image: '/images/gallery/rei-2024-showcase.jpg',
     description: 'B2B consultations and technical datasheet presentations with tier-1 PV module makers at Renewable Energy India 2024.',
     tag: 'REI 2024'
   },
@@ -66,15 +66,15 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: 'mfg-2',
     title: 'Precision Fast Cure EVA Roll Output',
     category: 'manufacturing',
-    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2021/09/alishan-fc.jpg',
-    description: 'Freshly extruded Alishan FC (Fast Cure EVA) film master roll undergoing optical clarity and cross-linking quality audit.',
+    image: '/images/gallery/ufc-eva-rolls.jpg',
+    description: 'Freshly extruded Alishan UFC (Ultra Fast Cure EVA) film master roll undergoing optical clarity and cross-linking quality audit.',
     tag: 'EVA Production'
   },
   {
     id: 'mfg-3',
     title: 'Advanced POE Co-Extruded Encapsulant Rolls',
     category: 'manufacturing',
-    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2021/09/Alishan-POE.jpg',
+    image: '/images/gallery/poe-encapsulant-rolls.jpg',
     description: 'Polyolefin Elastomer (POE) rolls prepared for bifacial and glass-glass high-efficiency TOPCon / HJT PV laminations.',
     tag: 'POE Extrusion'
   },
@@ -82,7 +82,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: 'cleanroom-2',
     title: 'Protective Barrier Solar Backsheet Rolls',
     category: 'cleanroom',
-    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2021/09/backsheets.jpg',
+    image: '/images/gallery/solar-backsheet-rolls.jpg',
     description: 'Tri-layer Fluoropolymer Backsheet rolls staged in climate-controlled warehouse ready for dispatch to module manufacturers.',
     tag: 'Backsheet Storage'
   },
@@ -90,7 +90,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: 'mfg-4',
     title: 'Alishan EPE Co-Extruded Multi-Layer Film',
     category: 'manufacturing',
-    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2021/09/alishan-epe.jpg',
+    image: '/images/gallery/epe-multilayer-rolls.jpg',
     description: 'Engineered EVA-POE-EVA sandwich structure providing high volume resistivity with optimized lamination cycle times.',
     tag: 'EPE Co-Extrusion'
   }
