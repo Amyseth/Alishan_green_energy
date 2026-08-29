@@ -23,12 +23,12 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Column 1: Company Profile (Span 2) */}
           <div className="lg:col-span-2 space-y-4">
-            <Link to="/" className="inline-block group mb-2">
-              <div className="bg-white/95 hover:bg-white px-3.5 py-1.5 rounded-xl inline-flex items-center shadow-lg border border-white/20 transition-all">
+            <Link to="/" className="inline-block group mb-3">
+              <div className="bg-white hover:bg-slate-50 px-4 py-2 rounded-2xl inline-flex items-center shadow-lg border border-white/40 transition-all">
                 <img
-                  src="https://www.alishangreenenergy.com/wp-content/uploads/2021/09/Alishan-Green-Logo-1024x488.png"
+                  src="/logo.png"
                   alt="Alishan Green Energy Pvt. Ltd."
-                  className="h-10 w-auto object-contain"
+                  className="h-11 sm:h-12 w-auto object-contain"
                 />
               </div>
             </Link>

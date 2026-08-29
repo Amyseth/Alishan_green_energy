@@ -74,11 +74,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestQuoteClick }) => {
         <div className="flex items-center justify-between">
           {/* Brand Logo with Official Alishan Logo */}
           <Link to="/" className="flex items-center group">
-            <div className="bg-white/95 hover:bg-white px-3 py-1 rounded-xl shadow-lg shadow-black/30 border border-white/20 transition-all duration-200 group-hover:scale-[1.02] flex items-center">
+            <div className="bg-white hover:bg-slate-50 px-4 py-2 rounded-2xl shadow-lg border border-white/40 transition-all duration-200 group-hover:scale-105 flex items-center">
               <img
-                src="https://www.alishangreenenergy.com/wp-content/uploads/2021/09/Alishan-Green-Logo-1024x488.png"
+                src="/logo.png"
                 alt="Alishan Green Energy Pvt. Ltd."
-                className="h-8 sm:h-9 w-auto object-contain"
+                className="h-10 sm:h-11 w-auto object-contain"
                 loading="eager"
               />
             </div>

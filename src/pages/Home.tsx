@@ -27,34 +27,34 @@ export const Home: React.FC<HomeProps> = ({ onRequestQuote }) => {
       {/* 1. HERO SECTION WITH AUTHENTIC LOOPING MANUFACTURING VIDEO */}
       {/* ========================================================================= */}
       <section className="relative pt-36 sm:pt-44 pb-28 sm:pb-36 overflow-hidden min-h-[85vh] flex items-center">
-        {/* Background Looping Solar Manufacturing Video */}
+        {/* Background Looping Solar Manufacturing Video - Vivid & Dynamic */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-full object-cover opacity-25 scale-105 filter brightness-95 contrast-125"
+            className="w-full h-full object-cover opacity-65 scale-105 filter brightness-105 contrast-120"
           >
             <source
               src="https://alishangreenenergy.com/wp-content/uploads/2021/09/final-1.mp4"
               type="video/mp4"
             />
           </video>
-          {/* Multi-layered cinematic gradient overlays for high-contrast readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A192F]/90 via-[#0A192F]/75 to-[#0A192F]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950/30 via-transparent to-[#0A192F]/85"></div>
-          <div className="absolute inset-0 tech-grid-bg opacity-25"></div>
+          {/* Balanced cinematic gradient overlays - clear video in center, seamless fade at edges */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0A192F]/70 via-[#0A192F]/40 to-[#0A192F]/95"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#0A192F]/30 to-[#0A192F]/90"></div>
+          <div className="absolute inset-0 tech-grid-bg opacity-15"></div>
         </div>
 
         {/* Ambient Glows */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="text-center max-w-4xl mx-auto space-y-7">
             {/* Top Pill Badge with Live Extrusion Indicator */}
-            <div className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-emerald-500/40 text-emerald-400 text-xs sm:text-sm font-semibold tracking-wide shadow-xl shadow-emerald-950/40">
+            <div className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-emerald-500/50 text-emerald-400 text-xs sm:text-sm font-semibold tracking-wide shadow-2xl shadow-black/80">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -62,17 +62,17 @@ export const Home: React.FC<HomeProps> = ({ onRequestQuote }) => {
               <span>India's Premier Solar PV Polymer Extrusion Powerhouse</span>
             </div>
 
-            {/* Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+            {/* Headline with High-Contrast Drop Shadow */}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15] drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
               Manifests Into{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-amber-300 drop-shadow-sm">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
                 Solar Products & Solutions
               </span>
             </h1>
 
-            {/* Sub-headline */}
-            <p className="text-base sm:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed font-normal">
-              Specialized manufacturing of advanced <strong className="text-white font-semibold">Encapsulant Films (EVA / POE / EPE)</strong> and high-durability <strong className="text-white font-semibold">Solar Backsheets</strong> for global tier-1 PV module makers. Driving India's <span className="text-emerald-400 font-semibold">'Atma Nirbhar Bharat'</span> mission.
+            {/* Sub-headline with High-Contrast Drop Shadow */}
+            <p className="text-base sm:text-xl text-slate-100 max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+              Specialized manufacturing of advanced <strong className="text-white font-bold">Encapsulant Films (EVA / POE / EPE)</strong> and high-durability <strong className="text-white font-bold">Solar Backsheets</strong> for global tier-1 PV module makers. Driving India's <span className="text-emerald-400 font-bold">'Atma Nirbhar Bharat'</span> mission.
             </p>
 
             {/* CTA Buttons */}
