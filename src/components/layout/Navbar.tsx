@@ -72,19 +72,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestQuoteClick }) => {
       {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Brand Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform duration-200">
-              <Sun className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <div className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center">
-                <span>ALISHAN</span>
-                <span className="text-emerald-400 ml-1.5 font-extrabold">GREEN ENERGY</span>
-              </div>
-              <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium tracking-wide uppercase">
-                Solar PV Encapsulants & Backsheets
-              </p>
+          {/* Brand Logo with Official Alishan Logo */}
+          <Link to="/" className="flex items-center group">
+            <div className="bg-white/95 hover:bg-white px-3 py-1 rounded-xl shadow-lg shadow-black/30 border border-white/20 transition-all duration-200 group-hover:scale-[1.02] flex items-center">
+              <img
+                src="https://www.alishangreenenergy.com/wp-content/uploads/2021/09/Alishan-Green-Logo-1024x488.png"
+                alt="Alishan Green Energy Pvt. Ltd."
+                className="h-8 sm:h-9 w-auto object-contain"
+                loading="eager"
+              />
             </div>
           </Link>
 

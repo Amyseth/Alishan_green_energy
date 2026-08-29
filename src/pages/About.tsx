@@ -255,6 +255,78 @@ export const About: React.FC<AboutProps> = ({ onRequestQuote }) => {
           </Link>
         </div>
       </section>
+
+      {/* Official Corporate Dossiers & Downloads */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-8 sm:p-10 rounded-3xl bg-slate-900 border border-slate-800 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">
+                Corporate Resources
+              </span>
+              <h2 className="text-2xl font-bold text-white mt-1">
+                Official Corporate Dossiers & Presentations
+              </h2>
+            </div>
+            <p className="text-xs text-slate-400 max-w-md">
+              Download verified corporate background documents directly from Alishan Green Energy.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+            <a
+              href="https://www.alishangreenenergy.com/wp-content/uploads/2025/02/About-Alishan-Group.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-xl bg-[#0A192F] border border-slate-800 hover:border-emerald-500/40 transition-all flex items-center justify-between group"
+            >
+              <div>
+                <div className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  About Alishan Group
+                </div>
+                <div className="text-xs text-slate-400 mt-0.5">Corporate history & group ventures</div>
+              </div>
+              <span className="text-xs font-semibold text-emerald-400 px-2 py-1 rounded bg-emerald-500/10 border border-emerald-500/20">
+                PDF
+              </span>
+            </a>
+
+            <a
+              href="https://www.alishangreenenergy.com/downloads/Alishan-Company-Profile.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-xl bg-[#0A192F] border border-slate-800 hover:border-emerald-500/40 transition-all flex items-center justify-between group"
+            >
+              <div>
+                <div className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  Alishan Company Profile
+                </div>
+                <div className="text-xs text-slate-400 mt-0.5">Manufacturing & capacity metrics</div>
+              </div>
+              <span className="text-xs font-semibold text-emerald-400 px-2 py-1 rounded bg-emerald-500/10 border border-emerald-500/20">
+                PDF
+              </span>
+            </a>
+
+            <a
+              href="https://www.alishangreenenergy.com/wp-content/uploads/2024/02/Alishan-Product-Brochure.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-xl bg-[#0A192F] border border-slate-800 hover:border-emerald-500/40 transition-all flex items-center justify-between group"
+            >
+              <div>
+                <div className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  Product Brochure
+                </div>
+                <div className="text-xs text-slate-400 mt-0.5">Encapsulants & backsheets catalog</div>
+              </div>
+              <span className="text-xs font-semibold text-emerald-400 px-2 py-1 rounded bg-emerald-500/10 border border-emerald-500/20">
+                PDF
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

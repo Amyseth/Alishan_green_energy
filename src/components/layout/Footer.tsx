@@ -23,18 +23,13 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Column 1: Company Profile (Span 2) */}
           <div className="lg:col-span-2 space-y-4">
-            <Link to="/" className="flex items-center space-x-3 group">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-                <Sun className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <div className="text-xl font-bold tracking-tight text-white flex items-center">
-                  <span>ALISHAN</span>
-                  <span className="text-emerald-400 ml-1.5 font-extrabold">GREEN ENERGY</span>
-                </div>
-                <p className="text-[10px] text-slate-400 font-medium tracking-wider uppercase">
-                  Pvt. Ltd. | Solar PV Material Technologies
-                </p>
+            <Link to="/" className="inline-block group mb-2">
+              <div className="bg-white/95 hover:bg-white px-3.5 py-1.5 rounded-xl inline-flex items-center shadow-lg border border-white/20 transition-all">
+                <img
+                  src="https://www.alishangreenenergy.com/wp-content/uploads/2021/09/Alishan-Green-Logo-1024x488.png"
+                  alt="Alishan Green Energy Pvt. Ltd."
+                  className="h-10 w-auto object-contain"
+                />
               </div>
             </Link>
 

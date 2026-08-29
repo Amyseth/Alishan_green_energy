@@ -107,7 +107,17 @@ export const Products: React.FC<ProductsProps> = ({ onRequestQuote }) => {
             </p>
           </div>
 
-          <div className="shrink-0 flex items-center gap-3">
+          <div className="shrink-0 flex flex-wrap items-center gap-3">
+            <a
+              href="https://www.alishangreenenergy.com/wp-content/uploads/2024/02/Alishan-Product-Brochure.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2.5 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition-all border border-slate-700 flex items-center hover:text-white"
+            >
+              <FileDown className="w-3.5 h-3.5 mr-1.5 text-emerald-400" />
+              <span>Official Brochure (PDF)</span>
+            </a>
+
             <button
               type="button"
               onClick={() =>
