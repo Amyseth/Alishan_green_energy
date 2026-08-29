@@ -24,41 +24,63 @@ export const Home: React.FC<HomeProps> = ({ onRequestQuote }) => {
   return (
     <div className="space-y-24 pb-20">
       {/* ========================================================================= */}
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION WITH AUTHENTIC LOOPING MANUFACTURING VIDEO */}
       {/* ========================================================================= */}
-      <section className="relative pt-32 sm:pt-40 pb-16 overflow-hidden">
-        {/* Background Gradients & Tech Grid */}
-        <div className="absolute inset-0 tech-grid-bg opacity-40 pointer-events-none"></div>
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      <section className="relative pt-36 sm:pt-44 pb-28 sm:pb-36 overflow-hidden min-h-[85vh] flex items-center">
+        {/* Background Looping Solar Manufacturing Video */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-25 scale-105 filter brightness-95 contrast-125"
+          >
+            <source
+              src="https://alishangreenenergy.com/wp-content/uploads/2021/09/final-1.mp4"
+              type="video/mp4"
+            />
+          </video>
+          {/* Multi-layered cinematic gradient overlays for high-contrast readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0A192F]/90 via-[#0A192F]/75 to-[#0A192F]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-950/30 via-transparent to-[#0A192F]/85"></div>
+          <div className="absolute inset-0 tech-grid-bg opacity-25"></div>
+        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto space-y-6">
-            {/* Top Pill */}
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs sm:text-sm font-semibold tracking-wide">
-              <Sparkles className="w-4 h-4 text-emerald-400" />
+        {/* Ambient Glows */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="text-center max-w-4xl mx-auto space-y-7">
+            {/* Top Pill Badge with Live Extrusion Indicator */}
+            <div className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-md border border-emerald-500/40 text-emerald-400 text-xs sm:text-sm font-semibold tracking-wide shadow-xl shadow-emerald-950/40">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
               <span>India's Premier Solar PV Polymer Extrusion Powerhouse</span>
             </div>
 
             {/* Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
               Manifests Into{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-amber-300">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-amber-300 drop-shadow-sm">
                 Solar Products & Solutions
               </span>
             </h1>
 
             {/* Sub-headline */}
-            <p className="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-              Specialized manufacturing of advanced <strong className="text-white">Encapsulant Films (EVA / POE / EPE)</strong> and high-durability <strong className="text-white">Solar Backsheets</strong> for global tier-1 PV module makers. Driving India's <span className="text-emerald-400 font-semibold">'Atma Nirbhar Bharat'</span> mission.
+            <p className="text-base sm:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed font-normal">
+              Specialized manufacturing of advanced <strong className="text-white font-semibold">Encapsulant Films (EVA / POE / EPE)</strong> and high-durability <strong className="text-white font-semibold">Solar Backsheets</strong> for global tier-1 PV module makers. Driving India's <span className="text-emerald-400 font-semibold">'Atma Nirbhar Bharat'</span> mission.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-3">
               <button
                 type="button"
                 onClick={() => onRequestQuote()}
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-base shadow-xl shadow-emerald-500/25 transition-all duration-200 flex items-center justify-center space-x-2 group hover:-translate-y-0.5"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-base shadow-xl shadow-emerald-500/30 transition-all duration-200 flex items-center justify-center space-x-2.5 group hover:-translate-y-0.5"
               >
                 <span>Request A Quote</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -66,25 +88,25 @@ export const Home: React.FC<HomeProps> = ({ onRequestQuote }) => {
 
               <Link
                 to="/products"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-800/90 hover:bg-slate-750 border border-slate-700 hover:border-emerald-500/40 text-white font-semibold text-base transition-all duration-200 flex items-center justify-center space-x-2"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900/90 hover:bg-slate-800 backdrop-blur-md border border-slate-700 hover:border-emerald-500/50 text-white font-semibold text-base transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg shadow-black/40 hover:-translate-y-0.5"
               >
                 <span>Explore Technical Catalog</span>
-                <ChevronRight className="w-5 h-5 text-slate-400" />
+                <ChevronRight className="w-5 h-5 text-emerald-400" />
               </Link>
             </div>
 
             {/* Mini Trust Badges */}
-            <div className="pt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400 border-t border-slate-800/80 mt-10">
-              <span className="flex items-center">
-                <Award className="w-4 h-4 text-emerald-400 mr-1.5" />
+            <div className="pt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-300 border-t border-slate-800/80 mt-10">
+              <span className="flex items-center bg-slate-900/60 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-slate-800">
+                <Award className="w-4 h-4 text-emerald-400 mr-2" />
                 NABL Accredited Testing Lab (TC 15544)
               </span>
-              <span className="flex items-center">
-                <ShieldCheck className="w-4 h-4 text-amber-400 mr-1.5" />
+              <span className="flex items-center bg-slate-900/60 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-slate-800">
+                <ShieldCheck className="w-4 h-4 text-amber-400 mr-2" />
                 IMS Certified: ISO 9001, 14001, 45001
               </span>
-              <span className="flex items-center">
-                <Factory className="w-4 h-4 text-emerald-400 mr-1.5" />
+              <span className="flex items-center bg-slate-900/60 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-slate-800">
+                <Factory className="w-4 h-4 text-emerald-400 mr-2" />
                 State-of-the-art Plant in Raipur, CG
               </span>
             </div>
@@ -93,16 +115,16 @@ export const Home: React.FC<HomeProps> = ({ onRequestQuote }) => {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. METRIC COUNTERS SECTION */}
+      {/* 2. METRIC COUNTERS SECTION (FLOATING GLASS SHELF) */}
       {/* ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 -mt-12 sm:-mt-16">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {COMPANY_INFO.keyMetrics.map((metric, idx) => (
             <div
               key={idx}
-              className="glass-panel rounded-2xl p-6 border border-white/10 hover:border-emerald-500/30 transition-all duration-300 relative overflow-hidden group"
+              className="rounded-2xl p-6 bg-slate-900/90 backdrop-blur-xl border border-white/15 hover:border-emerald-500/40 shadow-2xl shadow-black/60 transition-all duration-300 relative overflow-hidden group"
             >
-              <div className="absolute -right-4 -bottom-4 w-20 h-20 bg-emerald-500/5 rounded-full blur-xl group-hover:bg-emerald-500/10 transition-all"></div>
+              <div className="absolute -right-4 -bottom-4 w-20 h-20 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/20 transition-all"></div>
               <div className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
                 {metric.value}
               </div>
