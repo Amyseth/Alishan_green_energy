@@ -181,57 +181,78 @@ export const Products: React.FC<ProductsProps> = ({ onRequestQuote }) => {
                     </div>
                   </div>
 
-                  {/* Description */}
-                  <p className="text-sm text-slate-300 leading-relaxed max-w-5xl">
-                    {product.description}
-                  </p>
-
-                  {/* Key Features & Application */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                    <div className="space-y-3">
-                      <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400 mr-1.5" />
-                        Key Engineering Advantages:
-                      </h4>
-                      <ul className="space-y-2 text-xs text-slate-300">
-                        {product.features.map((feat, i) => (
-                          <li key={i} className="flex items-start">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-2 shrink-0 mt-1.5"></span>
-                            <span>{feat}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="space-y-4">
-                      <div className="space-y-2">
-                        <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center">
-                          <Zap className="w-4 h-4 text-amber-400 mr-1.5" />
-                          Recommended Applications:
-                        </h4>
-                        <ul className="space-y-1.5 text-xs text-slate-400">
-                          {product.recommendedApplications.map((app, i) => (
-                            <li key={i} className="flex items-center">
-                              <span className="w-1 h-1 rounded-full bg-amber-400 mr-2 shrink-0"></span>
-                              <span>{app}</span>
-                            </li>
-                          ))}
-                        </ul>
+                  {/* Main Product Layout with Authentic Image */}
+                  <div className="flex flex-col lg:flex-row gap-6 items-start">
+                    {product.image && (
+                      <div className="w-full lg:w-64 h-52 sm:h-56 rounded-2xl overflow-hidden bg-slate-900 border border-slate-700/60 shrink-0 relative group shadow-md">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/80 via-transparent to-transparent pointer-events-none"></div>
+                        <span className="absolute bottom-3 left-3 text-[10px] font-bold text-emerald-300 bg-slate-950/85 px-2 py-0.5 rounded-md border border-emerald-500/30 flex items-center shadow">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+                          Manufactured In Raipur
+                        </span>
                       </div>
+                    )}
 
-                      <div className="space-y-2 pt-2">
-                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                          Module Architecture Compatibility:
-                        </h4>
-                        <div className="flex flex-wrap gap-1.5">
-                          {product.compatibility.map((tag, i) => (
-                            <span
-                              key={i}
-                              className="px-2.5 py-0.5 rounded-md bg-slate-900 text-slate-300 border border-slate-800 text-[11px] font-medium"
-                            >
-                              {tag}
-                            </span>
-                          ))}
+                    <div className="flex-1 space-y-4">
+                      {/* Description */}
+                      <p className="text-sm text-slate-300 leading-relaxed">
+                        {product.description}
+                      </p>
+
+                      {/* Key Features & Application */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-1">
+                        <div className="space-y-3">
+                          <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 mr-1.5" />
+                            Key Engineering Advantages:
+                          </h4>
+                          <ul className="space-y-2 text-xs text-slate-300">
+                            {product.features.map((feat, i) => (
+                              <li key={i} className="flex items-start">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-2 shrink-0 mt-1.5"></span>
+                                <span>{feat}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div className="space-y-4">
+                          <div className="space-y-2">
+                            <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center">
+                              <Zap className="w-4 h-4 text-amber-400 mr-1.5" />
+                              Recommended Applications:
+                            </h4>
+                            <ul className="space-y-1.5 text-xs text-slate-400">
+                              {product.recommendedApplications.map((app, i) => (
+                                <li key={i} className="flex items-center">
+                                  <span className="w-1 h-1 rounded-full bg-amber-400 mr-2 shrink-0"></span>
+                                  <span>{app}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <div className="space-y-2 pt-1">
+                            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                              Module Architecture Compatibility:
+                            </h4>
+                            <div className="flex flex-wrap gap-1.5">
+                              {product.compatibility.map((tag, i) => (
+                                <span
+                                  key={i}
+                                  className="px-2.5 py-0.5 rounded-md bg-slate-900 text-slate-300 border border-slate-800 text-[11px] font-medium"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

@@ -17,6 +17,7 @@ export interface ProductItem {
   recommendedApplications: string[];
   specifications: ProductSpec[];
   compatibility: string[];
+  image?: string;
 }
 
 export interface QuoteFormData {

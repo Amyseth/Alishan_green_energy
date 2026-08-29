@@ -82,6 +82,13 @@ export const RdCertifications: React.FC<RdCertificationsProps> = ({ onRequestQuo
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-6">
               <div className="flex flex-wrap items-center gap-3">
+                <div className="bg-white/95 px-3 py-1 rounded-xl shadow border border-white/20 inline-flex items-center">
+                  <img
+                    src="https://www.alishangreenenergy.com/wp-content/uploads/2026/07/nabl-logo.png"
+                    alt="NABL Accredited Lab TC 15544"
+                    className="h-10 w-auto object-contain"
+                  />
+                </div>
                 <span className="px-3.5 py-1.5 rounded-lg bg-emerald-500 text-slate-950 text-xs font-extrabold uppercase tracking-wide flex items-center shadow-lg shadow-emerald-500/20">
                   <Award className="w-4 h-4 mr-1.5" />
                   NABL TC 15544 Accredited
@@ -162,8 +169,15 @@ export const RdCertifications: React.FC<RdCertificationsProps> = ({ onRequestQuo
 
       {/* ISO Management Systems */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-          <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+        <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
+          <div className="inline-block bg-white/95 px-4 py-1.5 rounded-xl shadow border border-white/20 mb-2">
+            <img
+              src="https://www.alishangreenenergy.com/wp-content/uploads/2025/01/ISO-logo.png"
+              alt="ISO 9001, ISO 14001, ISO 45001"
+              className="h-12 w-auto object-contain mx-auto"
+            />
+          </div>
+          <span className="block text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 max-w-fit mx-auto">
             Integrated Management System (IMS)
           </span>
           <h2 className="text-3xl font-bold text-white tracking-tight">

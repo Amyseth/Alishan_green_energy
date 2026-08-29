@@ -153,6 +153,20 @@ export const Home: React.FC<HomeProps> = ({ onRequestQuote }) => {
                 </p>
               </div>
 
+              {/* Authentic Product Image Banner */}
+              <div className="h-44 w-full rounded-2xl overflow-hidden relative border border-slate-800 bg-slate-900 group">
+                <img
+                  src="https://www.alishangreenenergy.com/wp-content/uploads/2025/01/alishan-fc.jpg"
+                  alt="Alishan Solar Encapsulants"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/90 via-transparent to-transparent pointer-events-none"></div>
+                <span className="absolute bottom-2.5 left-3 text-[11px] font-bold text-emerald-300 bg-slate-950/80 px-2.5 py-0.5 rounded border border-emerald-500/30">
+                  EVA / POE / EPE Co-Extruded Rolls
+                </span>
+              </div>
+
               {/* Sample Product Chips */}
               <div className="space-y-2.5">
                 <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
@@ -209,6 +223,20 @@ export const Home: React.FC<HomeProps> = ({ onRequestQuote }) => {
                 <p className="text-sm text-slate-300 leading-relaxed">
                   India's premier range of coated and laminated backsheets. Manufactured in our state-of-the-art facility to guarantee 1500V electrical insulation and withstand severe ambient weathering.
                 </p>
+              </div>
+
+              {/* Authentic Backsheet Image Banner */}
+              <div className="h-44 w-full rounded-2xl overflow-hidden relative border border-slate-800 bg-slate-900 group">
+                <img
+                  src="https://www.alishangreenenergy.com/wp-content/uploads/2023/09/backsheets.jpg"
+                  alt="Alishan Solar Backsheets"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/90 via-transparent to-transparent pointer-events-none"></div>
+                <span className="absolute bottom-2.5 left-3 text-[11px] font-bold text-amber-300 bg-slate-950/80 px-2.5 py-0.5 rounded border border-amber-500/30">
+                  Backpro Coated & Laminated Series
+                </span>
               </div>
 
               {/* Sample Product Chips */}

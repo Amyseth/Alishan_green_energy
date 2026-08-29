@@ -7,6 +7,7 @@ export const ENCAPSULANT_PRODUCTS: ProductItem[] = [
     code: 'AGE-EVA-FC',
     category: 'encapsulant',
     badge: 'Industry Workhorse',
+    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2025/01/alishan-fc.jpg',
     tagline: 'Fast Cure EVA Encapsulant with Superior PID & Snail-Trail Resistance',
     description:
       'Alishan FC is a high-performance Fast Cure Ethylene Vinyl Acetate (EVA) encapsulant film engineered for crystalline silicon solar modules. Formulated with high-grade optical resins and advanced crosslinking chemistry, it provides robust resistance to Potential Induced Degradation (PID) and prevents silver paste corrosion and snail-trail formation across 25+ years of outdoor field deployment.',
@@ -41,6 +42,7 @@ export const ENCAPSULANT_PRODUCTS: ProductItem[] = [
     code: 'AGE-EVA-UFC',
     category: 'encapsulant',
     badge: 'High Throughput',
+    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2025/01/alishan-ufc.jpg',
     tagline: 'Ultra-Fast Cure Encapsulant Delivering High-Speed Lamination & Superior Module Protection',
     description:
       'Alishan UFC is designed for multi-gigawatt gigafactories seeking maximum lamination throughput. Its rapid crosslinking initiator package cuts lamination cycle time down to 8–10 minutes while preserving exceptional adhesion, bubble-free flow, and superior yellowing resistance under intense solar UV radiation.',
@@ -74,6 +76,7 @@ export const ENCAPSULANT_PRODUCTS: ProductItem[] = [
     code: 'AGE-POE-IND',
     category: 'encapsulant',
     badge: 'Zero Acetic Acid',
+    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2025/01/Alishan-POE.jpg',
     tagline: 'Polyolefin Elastomer Offering Exceptional Moisture Barrier & Electrical Insulation',
     description:
       'Alishan POE is an engineered pure Polyolefin Elastomer encapsulant created to eliminate moisture-induced degradation in high-efficiency solar cells. Offering an ultra-low Water Vapor Transmission Rate (WVTR) and zero acetic acid decomposition, it provides unmatched volume resistivity, making it the premier choice for bifacial glass-to-glass (G2G) architectures.',
@@ -108,6 +111,7 @@ export const ENCAPSULANT_PRODUCTS: ProductItem[] = [
     code: 'AGE-COEX-EPE',
     category: 'encapsulant',
     badge: 'Co-Extruded Multi-Layer',
+    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2025/01/alishan-epe.jpg',
     tagline: 'Multi-Layer Co-Extruded Film Engineered Specifically for TOPCon (G2G / G2BS) Modules',
     description:
       'Alishan EPE features an advanced EVA/POE/EVA co-extruded trilayer structure. The central POE core imparts exceptional water vapor barrier and PID resistance, while the exterior EVA skin layers ensure effortless lamination processing, bubble suppression, and strong adhesion to glass and backsheet.',
@@ -141,6 +145,7 @@ export const ENCAPSULANT_PRODUCTS: ProductItem[] = [
     code: 'AGE-EVA-LA',
     category: 'encapsulant',
     badge: 'Patented Low-Acid Tech',
+    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2025/01/alishan-fc.jpg',
     tagline: 'Advanced Formulation Mitigating Acetic Acid Generation, Metallization Corrosion & Power Loss',
     description:
       'Under thermal and UV stress, conventional EVA undergoes deacetylation releasing acetic acid which attacks solar cell silver fingers. Alishan Low-Acid EVA incorporates proprietary acid-scavenging organo-stabilizers that neutralize free radicals and suppress acetic acid formation, effectively preserving front contact conductivity.',
@@ -173,6 +178,7 @@ export const ENCAPSULANT_PRODUCTS: ProductItem[] = [
     code: 'AGE-EPE-NT',
     category: 'encapsulant',
     badge: 'n-Type TOPCon Tailored',
+    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2025/01/alishan-epe.jpg',
     tagline: 'Tailored for n-Type TOPCon Cells — Combining EVA Processing Ease with POE Barrier Durability',
     description:
       'n-Type TOPCon cells have sensitive boron-doped emitters and front metal grids vulnerable to sodium ion migration and moisture. Alishan EPE-NT features a customized elastomer composition with optimized polar functional groups, ensuring zero sodium ion leaching, zero PID-p, and flawless lamination without edge-pinch defects.',
@@ -205,6 +211,7 @@ export const ENCAPSULANT_PRODUCTS: ProductItem[] = [
     code: 'AGE-EPE-DC',
     category: 'encapsulant',
     badge: 'UV Down-Conversion',
+    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2025/01/alishan-epe.jpg',
     tagline: 'Innovative UV Down-Conversion Technology Converting Harmful UV Photons into Usable Power',
     description:
       'Alishan EPE-DC represents the cutting edge of photovoltaic polymer science. Embedded with advanced luminescent down-shifting fluorophores, it absorbs destructive ultraviolet light (280–380 nm) and shifts it into visible blue/green spectrum (400–460 nm) where solar cells have peak quantum efficiency — boosting module power output by up to 1.5–2.5%.',
@@ -240,6 +247,7 @@ export const BACKSHEET_PRODUCTS: ProductItem[] = [
     code: 'AGE-BS-KPC',
     category: 'backsheet',
     badge: 'Premium Fluoropolymer',
+    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2023/09/backsheets.jpg',
     tagline: 'PVDF / PET / Modified Polyolefin Coated Backsheet for Extreme Weather Longevity',
     description:
       'Backpro KPC is a premium three-layer laminated solar backsheet utilizing an exterior fluoropolymer (PVDF/Tedlar-equivalent) layer for unmatched atmospheric weatherability, a high-dielectric PET core, and a chemically bonded polyolefin primer for superior adhesion to EVA and POE encapsulants.',
@@ -272,6 +280,7 @@ export const BACKSHEET_PRODUCTS: ProductItem[] = [
     code: 'AGE-BS-CPC',
     category: 'backsheet',
     badge: 'Fluoro-Coated Reliability',
+    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2023/09/backsheets.jpg',
     tagline: 'Dual-Side Fluoro-Coated Engineering Backsheet for Cost-Effective Field Protection',
     description:
       'Backpro CPC utilizes precision roll-to-roll liquid fluororesin coatings on both sides of a specialized solar-grade polyester substrate. This delivers fluoropolymer-grade durability, anti-hydrolysis, and flame resistance while offering competitive module fabrication economics.',
@@ -304,6 +313,7 @@ export const BACKSHEET_PRODUCTS: ProductItem[] = [
     code: 'AGE-BS-PPC',
     category: 'backsheet',
     badge: 'Polyolefin Weather Shield',
+    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2023/09/backsheets.jpg',
     tagline: 'Multi-Layer Polypropylene / Polyester Composite Backsheet for Ultra-Low Moisture Ingress',
     description:
       'Backpro PPC employs a multi-layer polyolefin alloy coupled with a high-strength core layer. Designed for eco-conscious recyclability and fluorine-free regulatory requirements, PPC offers an intrinsically hydrophobic moisture barrier with zero risk of halogenated gas release during end-of-life recycling.',
@@ -336,6 +346,7 @@ export const BACKSHEET_PRODUCTS: ProductItem[] = [
     code: 'AGE-BS-TRANS',
     category: 'backsheet',
     badge: 'Bifacial Transparent',
+    image: 'https://www.alishangreenenergy.com/wp-content/uploads/2023/09/backsheets.jpg',
     tagline: 'High-Transmission Transparent Backsheets for Lightweight Bifacial Solar Modules',
     description:
       'Backpro High-Transmission (-T) variants are engineered for glass-to-backsheet (G2BS) bifacial solar modules. Combining ultra-high optical transparency (>90%) with lightweight construction, -T series modules deliver bifacial rear energy gains while eliminating the heavy weight, micro-cracking fragility, and installation costs of dual-glass panels.',

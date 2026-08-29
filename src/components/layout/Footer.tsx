@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
             </Link>
 
             <p className="text-sm text-slate-300 leading-relaxed max-w-md">
-              {COMPANY_INFO.tagline}. Leading the domestic indigenisation of solar PV module encapsulants (EVA / POE / EPE) and advanced backsheet films under the Make in India and Atma Nirbhar Bharat initiatives.
+              Our Encapsulants and Backsheets are designed to empower the solar industry, bridging the gap between cutting-edge technology and scalable energy solutions for a sustainable tomorrow.
             </p>
 
             {/* Certifications Badge Pills */}
@@ -194,7 +194,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between text-xs text-slate-400 gap-4">
           <div className="flex items-center space-x-2">
-            <span>© {new Date().getFullYear()} {COMPANY_INFO.name} All rights reserved.</span>
+            <span>Copyright 2021 Alishan Green Energy Pvt. Ltd. All Rights Reserved.</span>
           </div>
 
           <div className="flex items-center space-x-6">
