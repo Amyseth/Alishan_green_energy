@@ -63,11 +63,12 @@ export const Home: React.FC<HomeProps> = ({ onRequestQuote }) => {
               <span>India's Premier Solar PV Polymer Extrusion Powerhouse</span>
             </div>
 
-            {/* Headline with High-Contrast Drop Shadow */}
+            {/* Full Official Tagline Headline with High-Contrast Drop Shadow */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15] drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
-              Manifests Into{' '}
+              Alishan Green Energy{' '}
+              <span className="block sm:inline font-extrabold">Manifests Into </span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-                Solar Products & Solutions
+                Solar Products &amp; Solutions
               </span>
             </h1>
 
@@ -112,7 +113,7 @@ export const Home: React.FC<HomeProps> = ({ onRequestQuote }) => {
               </span>
               <span className="flex items-center bg-slate-900/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-emerald-500/30 text-emerald-300 shadow-sm">
                 <Clock className="w-4 h-4 text-cyan-400 mr-2" />
-                Working Hours: Mon – Sat : 9:00 AM – 6:00 PM IST
+                Business Hours: Monday – Saturday : 10am to 7pm
               </span>
             </div>
           </div>
@@ -502,7 +503,7 @@ export const Home: React.FC<HomeProps> = ({ onRequestQuote }) => {
               <div className="pt-4 border-t border-slate-800 space-y-1.5 text-xs text-slate-400">
                 <div className="flex items-center space-x-2 text-slate-300">
                   <Clock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span><strong>Operating Hours:</strong> Mon – Sat : 9:00 AM – 6:00 PM IST</span>
+                  <span><strong>Business Hours:</strong> Monday – Saturday : 10am to 7pm</span>
                 </div>
                 <div>
                   Direct commercial hotline: <a href="tel:+919171200097" className="text-emerald-400 font-semibold hover:underline">+91 91712 00097</a>

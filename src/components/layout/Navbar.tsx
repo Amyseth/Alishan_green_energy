@@ -123,7 +123,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestQuoteClick }) => {
           </span>
           <span className="hidden xl:flex items-center text-slate-300">
             <Clock className="w-3 h-3 text-emerald-400 mr-1.5" />
-            Mon – Sat : 9:00 AM – 6:00 PM
+            Monday – Saturday : 10am to 7pm
           </span>
           <span className="text-slate-600 hidden xl:inline">|</span>
           <a

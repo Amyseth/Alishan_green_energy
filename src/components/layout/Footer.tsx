@@ -35,9 +35,14 @@ export const Footer: React.FC = () => {
               </div>
             </Link>
 
-            <p className="text-sm text-slate-300 leading-relaxed max-w-md">
-              Our Encapsulants and Backsheets are designed to empower the solar industry, bridging the gap between cutting-edge technology and scalable energy solutions for a sustainable tomorrow.
-            </p>
+            <div className="space-y-2">
+              <div className="text-emerald-400 font-bold text-sm tracking-tight">
+                Alishan Green Energy Manifests Into Solar Products &amp; Solutions
+              </div>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md">
+                Our Encapsulants and Backsheets are designed to empower the solar industry, bridging the gap between cutting-edge polymer technology and scalable energy solutions for a sustainable tomorrow.
+              </p>
+            </div>
 
             {/* Certifications Badge Pills */}
             <div className="pt-2 flex flex-wrap gap-2">
@@ -231,7 +236,7 @@ export const Footer: React.FC = () => {
 
               <div className="flex items-center space-x-2.5 pt-1 text-slate-300">
                 <Clock className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>Mon – Sat : 9:00 AM – 6:00 PM IST</span>
+                <span>Monday – Saturday : 10am to 7pm</span>
               </div>
             </div>
           </div>

@@ -40,6 +40,9 @@ export const About: React.FC<AboutProps> = ({ onRequestQuote }) => {
             <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md">
               Pioneering Domestic Solar Material Autonomy
             </h1>
+            <p className="text-emerald-300 font-semibold text-sm sm:text-base tracking-wide drop-shadow">
+              {COMPANY_INFO.tagline}
+            </p>
             <p className="text-base sm:text-lg text-slate-200 leading-relaxed drop-shadow">
               {COMPANY_INFO.subTagline}
             </p>

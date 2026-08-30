@@ -8,6 +8,7 @@ import {
   Factory,
   ShieldCheck,
   Award,
+  MessageCircle,
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/company';
 import QuoteForm from '../components/ui/QuoteForm';
@@ -82,6 +83,23 @@ export const Contact: React.FC = () => {
                       className="font-semibold text-emerald-400 hover:underline"
                     >
                       {COMPANY_INFO.contact.email}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3.5">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                    <MessageCircle className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-slate-400 text-xs block font-medium">WhatsApp Support</span>
+                    <a
+                      href={COMPANY_INFO.contact.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold text-emerald-400 hover:underline"
+                    >
+                      {COMPANY_INFO.contact.whatsapp} (Chat Now)
                     </a>
                   </div>
                 </div>
@@ -188,6 +206,15 @@ export const Contact: React.FC = () => {
                     aria-label="Instagram"
                   >
                     <span className="text-xs font-bold">Instagram</span>
+                  </a>
+                  <a
+                    href="https://wa.me/919171200097"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 transition-colors"
+                    aria-label="WhatsApp"
+                  >
+                    <span className="text-xs font-bold">WhatsApp</span>
                   </a>
                 </div>
               </div>

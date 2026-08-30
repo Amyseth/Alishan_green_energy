@@ -30,6 +30,12 @@ export const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w
   </svg>
 );
 
+export const WhatsAppIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.632.062-1.954-.486-1.583-.655-2.612-2.27-2.691-2.375-.08-.105-.644-.858-.644-1.637 0-.779.408-1.163.553-1.321.144-.158.316-.198.421-.198.106 0 .211.001.303.006.098.005.228-.037.356.27.132.316.449 1.094.488 1.173.04.08.066.172.013.277-.053.106-.08.172-.158.264-.08.092-.168.204-.24.275-.08.08-.163.167-.07.327.092.158.411.678.882 1.097.606.539 1.117.706 1.275.786.158.079.251.066.344-.04.092-.106.396-.462.502-.62.105-.159.211-.132.356-.079.145.053.924.436 1.082.515.158.08.264.12.303.185.04.066.04.382-.104.787zm-3.392-10.216c5.449 0 9.878 4.428 9.879 9.878 0 2.164-.702 4.167-1.892 5.795l1.974 5.927-6.107-1.603c-1.536.924-3.332 1.459-5.253 1.459-5.45 0-9.879-4.428-9.879-9.878 0-5.45 4.429-9.878 9.878-9.878zm0 1.8c-4.457 0-8.078 3.621-8.078 8.078 0 1.606.474 3.106 1.293 4.367l-1.042 3.807 3.931-1.031c1.205.748 2.628 1.179 4.15 1.179 4.457 0 8.079-3.621 8.079-8.078 0-4.457-3.622-8.078-8.079-8.078z" />
+  </svg>
+);
+
 export const SOCIAL_LINKS = [
   {
     name: 'LinkedIn',
@@ -37,18 +43,23 @@ export const SOCIAL_LINKS = [
     icon: <LinkedInIcon className="w-4 h-4" />,
   },
   {
-    name: 'Facebook',
-    url: 'https://www.facebook.com/alishangreenenergy',
-    icon: <FacebookIcon className="w-4 h-4" />,
-  },
-  {
     name: 'Twitter',
     url: 'https://twitter.com/alishan_green',
     icon: <TwitterIcon className="w-4 h-4" />,
   },
   {
+    name: 'Facebook',
+    url: 'https://www.facebook.com/alishangreenenergy',
+    icon: <FacebookIcon className="w-4 h-4" />,
+  },
+  {
     name: 'Instagram',
     url: 'https://www.instagram.com/alishangreenenergy/',
     icon: <InstagramIcon className="w-4 h-4" />,
+  },
+  {
+    name: 'WhatsApp',
+    url: 'https://wa.me/919171200097',
+    icon: <WhatsAppIcon className="w-4 h-4" />,
   },
 ];
