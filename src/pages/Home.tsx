@@ -11,6 +11,7 @@ import {
   Factory,
   ChevronRight,
   Sun,
+  Clock,
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/company';
 import { ENCAPSULANT_PRODUCTS, BACKSHEET_PRODUCTS } from '../data/products';
@@ -108,6 +109,10 @@ export const Home: React.FC<HomeProps> = ({ onRequestQuote }) => {
               <span className="flex items-center bg-slate-900/60 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-slate-800">
                 <Factory className="w-4 h-4 text-emerald-400 mr-2" />
                 State-of-the-art Plant in Raipur, CG
+              </span>
+              <span className="flex items-center bg-slate-900/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-emerald-500/30 text-emerald-300 shadow-sm">
+                <Clock className="w-4 h-4 text-cyan-400 mr-2" />
+                Working Hours: Mon – Sat : 9:00 AM – 6:00 PM IST
               </span>
             </div>
           </div>
@@ -494,8 +499,14 @@ export const Home: React.FC<HomeProps> = ({ onRequestQuote }) => {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-800 text-xs text-slate-400">
-                Direct hotline: <a href="tel:+919171200097" className="text-emerald-400 font-semibold hover:underline">+91 91712 00097</a>
+              <div className="pt-4 border-t border-slate-800 space-y-1.5 text-xs text-slate-400">
+                <div className="flex items-center space-x-2 text-slate-300">
+                  <Clock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span><strong>Operating Hours:</strong> Mon – Sat : 9:00 AM – 6:00 PM IST</span>
+                </div>
+                <div>
+                  Direct commercial hotline: <a href="tel:+919171200097" className="text-emerald-400 font-semibold hover:underline">+91 91712 00097</a>
+                </div>
               </div>
             </div>
 

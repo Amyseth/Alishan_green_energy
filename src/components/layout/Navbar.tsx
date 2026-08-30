@@ -7,7 +7,8 @@ import {
   ArrowRight, 
   PhoneCall, 
   ChevronDown, 
-  ExternalLink 
+  ExternalLink,
+  Clock 
 } from 'lucide-react';
 import { COMPANY_INFO } from '../../data/company';
 import { SOCIAL_LINKS } from '../common/SocialIcons';
@@ -120,6 +121,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestQuoteClick }) => {
           <span className="text-slate-400">
             Atma Nirbhar Bharat — Domestic Solar PV Polymer Extrusion
           </span>
+          <span className="hidden xl:flex items-center text-slate-300">
+            <Clock className="w-3 h-3 text-emerald-400 mr-1.5" />
+            Mon – Sat : 9:00 AM – 6:00 PM
+          </span>
+          <span className="text-slate-600 hidden xl:inline">|</span>
           <a
             href={`tel:${COMPANY_INFO.contact.phone.replace(/\s+/g, '')}`}
             className="flex items-center text-slate-300 hover:text-emerald-400 transition-colors"

@@ -9,6 +9,7 @@ import {
   Award,
   ArrowUpRight,
   ExternalLink,
+  Clock,
 } from 'lucide-react';
 import { COMPANY_INFO } from '../../data/company';
 import { SOCIAL_LINKS } from '../common/SocialIcons';
@@ -226,6 +227,11 @@ export const Footer: React.FC = () => {
                 >
                   {COMPANY_INFO.contact.email}
                 </a>
+              </div>
+
+              <div className="flex items-center space-x-2.5 pt-1 text-slate-300">
+                <Clock className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>Mon – Sat : 9:00 AM – 6:00 PM IST</span>
               </div>
             </div>
           </div>
