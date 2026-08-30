@@ -82,16 +82,16 @@ export const Products: React.FC<ProductsProps> = ({ onRequestQuote }) => {
       {/* 1. INDUSTRIAL HERO BANNER WITH GREEN / BLUE TEXT OVERLAYS */}
       {/* ========================================================================= */}
       <section className="relative pt-36 sm:pt-44 pb-20 sm:pb-24 overflow-hidden border-b border-slate-800 bg-[#0A192F]">
-        {/* Background Automated Line / Solar Array Overlay */}
+        {/* Background Automated Line / Solar Polymer Extrusion Overlay */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A192F] via-[#0A192F]/85 to-[#0A192F]/70 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A192F]/95 via-[#0A192F]/80 to-[#0A192F]/65 z-10"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-transparent z-10"></div>
           <img
-            src="https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1920&q=80"
-            alt="Automated Solar PV Manufacturing"
-            className="w-full h-full object-cover opacity-20 filter contrast-125 scale-105"
+            src="/images/heroes/products-hero.jpg"
+            alt="Alishan Precision Solar Polymer Extrusion & Roll Production"
+            className="w-full h-full object-cover opacity-40 filter contrast-110 scale-105"
           />
-          <div className="absolute inset-0 tech-grid-bg opacity-30 z-10"></div>
+          <div className="absolute inset-0 tech-grid-bg opacity-25 z-10"></div>
         </div>
 
         {/* Ambient Glows */}

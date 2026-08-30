@@ -193,29 +193,41 @@ export const NewsEvents: React.FC = () => {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="pt-28 pb-20 space-y-16">
+    <div className="space-y-16">
       {/* ========================================================================= */}
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION WITH HERO PHOTO */}
       {/* ========================================================================= */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-        <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs sm:text-sm font-semibold">
-          <Newspaper className="w-4 h-4 mr-1" />
-          <span>News, Technical Blog &amp; Global Industry Events</span>
+      <section className="relative overflow-hidden pt-36 pb-20 sm:pb-24 border-b border-emerald-500/20">
+        {/* Background Hero Image with Overlays */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/heroes/news-hero.jpg"
+            alt="International Renewable Energy Expo and Clean Tech Solar Exhibition"
+            className="w-full h-full object-cover object-center scale-105 filter brightness-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A192F]/95 via-[#0A192F]/85 to-[#0A192F]/65"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-transparent"></div>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-          News, Events &amp;{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300">
-            Technical Insights
-          </span>
-        </h1>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs sm:text-sm font-semibold backdrop-blur-md">
+            <Newspaper className="w-4 h-4 mr-1" />
+            <span>News, Technical Blog &amp; Global Industry Events</span>
+          </div>
 
-        <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
-          Stay updated with Alishan Green Energy's latest product launches, technical whitepapers on solar polymer science, trade exhibitions, and international clean energy conferences.
-        </p>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md">
+            News, Events &amp;{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300">
+              Technical Insights
+            </span>
+          </h1>
 
-        {/* Search & Category Filter Bar */}
-        <div className="max-w-3xl mx-auto pt-4 space-y-4">
+          <p className="text-slate-200 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed drop-shadow">
+            Stay updated with Alishan Green Energy's latest product launches, technical whitepapers on solar polymer science, trade exhibitions, and international clean energy conferences.
+          </p>
+
+          {/* Search & Category Filter Bar */}
+          <div className="max-w-3xl mx-auto pt-4 space-y-4">
           <div className="relative">
             <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
@@ -256,6 +268,7 @@ export const NewsEvents: React.FC = () => {
               );
             })}
           </div>
+        </div>
         </div>
       </section>
 

@@ -14,19 +14,32 @@ import QuoteForm from '../components/ui/QuoteForm';
 
 export const Contact: React.FC = () => {
   return (
-    <div className="pt-32 sm:pt-40 pb-24 space-y-16">
-      {/* Page Header */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
-            <span>Direct Commercial & Technical Channel</span>
+    <div className="space-y-16">
+      {/* Page Header with Custom Contact Hero Photo */}
+      <section className="relative overflow-hidden pt-36 pb-20 sm:pb-28 border-b border-emerald-500/20">
+        {/* Background Hero Image with Overlays */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/heroes/contact-hero.jpg"
+            alt="Alishan Sustainable Energy Corporate Consultation Hub"
+            className="w-full h-full object-cover object-center scale-105 filter brightness-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A192F]/95 via-[#0A192F]/85 to-[#0A192F]/65"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-transparent"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl space-y-4">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
+              <span>Direct Commercial &amp; Technical Channel</span>
+            </div>
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md">
+              Request A Quote &amp; Technical Consultation
+            </h1>
+            <p className="text-base sm:text-lg text-slate-200 leading-relaxed drop-shadow">
+              Connect directly with our engineering and procurement team in Raipur. Inquiries are processed within 24 business hours, with sample rolls dispatched for qualification.
+            </p>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Request A Quote & Technical Consultation
-          </h1>
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-            Connect directly with our engineering and procurement team in Raipur. Inquiries are processed within 24 business hours, with sample rolls dispatched for qualification.
-          </p>
         </div>
       </section>
 

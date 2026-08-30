@@ -198,29 +198,42 @@ export const Career: React.FC = () => {
   };
 
   return (
-    <div className="pt-28 pb-20 space-y-20">
-      {/* ========================================================================= */}
-      {/* 1. HERO SECTION */}
-      {/* ========================================================================= */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-        <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs sm:text-sm font-semibold">
-          <Briefcase className="w-4 h-4 mr-1" />
-          <span>Careers at Alishan Green Energy</span>
+    <div className="space-y-16">
+      {/* 1. HERO SECTION WITH HERO PHOTO */}
+      <section className="relative overflow-hidden pt-36 pb-20 sm:pb-24 border-b border-emerald-500/20">
+        {/* Background Hero Image with Overlays */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/heroes/career-hero.jpg"
+            alt="Alishan Green Energy Team of Engineers and Plant Specialists"
+            className="w-full h-full object-cover object-center scale-105 filter brightness-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A192F]/95 via-[#0A192F]/85 to-[#0A192F]/65"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-transparent"></div>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-          Build India's Clean Energy{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300">
-            Manufacturing Future
-          </span>
-        </h1>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs sm:text-sm font-semibold backdrop-blur-md">
+            <Briefcase className="w-4 h-4 mr-1" />
+            <span>Careers at Alishan Green Energy</span>
+          </div>
 
-        <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
-          We are growing, and you are growing with us. Join a dynamic team of polymer technologists, production engineers, and quality specialists manufacturing advanced solar encapsulants for India's clean energy transition.
-        </p>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md">
+            Build India's Clean Energy{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300">
+              Manufacturing Future
+            </span>
+          </h1>
 
-        {/* Culture Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto pt-6 text-left">
+          <p className="text-slate-200 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed drop-shadow">
+            We are growing, and you are growing with us. Join a dynamic team of polymer technologists, production engineers, and quality specialists manufacturing advanced solar encapsulants for India's clean energy transition.
+          </p>
+        </div>
+      </section>
+
+      {/* Culture Highlights */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
           <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-3">
             <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center border border-emerald-500/20">
               <Zap className="w-5 h-5" />

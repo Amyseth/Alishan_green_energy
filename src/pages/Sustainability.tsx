@@ -40,20 +40,33 @@ export const Sustainability: React.FC<SustainabilityProps> = ({ onRequestQuote }
   ];
 
   return (
-    <div className="pt-32 sm:pt-40 pb-24 space-y-20">
-      {/* Header Banner */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
-            <Leaf className="w-3.5 h-3.5" />
-            <span>Environmental Stewardship & ESG</span>
+    <div className="space-y-20">
+      {/* Header Banner with Custom Sustainability Hero Photo */}
+      <section className="relative overflow-hidden pt-36 pb-20 sm:pb-28 border-b border-emerald-500/20">
+        {/* Background Hero Image with Overlays */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/heroes/sustainability-hero.jpg"
+            alt="Utility Scale Solar Park and Sustainable Clean Energy Landscape"
+            className="w-full h-full object-cover object-center scale-105 filter brightness-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A192F]/95 via-[#0A192F]/85 to-[#0A192F]/65"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-transparent"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl space-y-4">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
+              <Leaf className="w-3.5 h-3.5" />
+              <span>Environmental Stewardship &amp; ESG</span>
+            </div>
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md">
+              Sustainable Manufacturing For A Decarbonized Future
+            </h1>
+            <p className="text-base sm:text-lg text-slate-200 leading-relaxed drop-shadow">
+              At Alishan Green Energy, we believe the materials that generate clean solar energy must themselves be manufactured through responsible, low-impact, and resource-conscious industrial processes.
+            </p>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Sustainable Manufacturing For A Decarbonized Future
-          </h1>
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-            At Alishan Green Energy, we believe the materials that generate clean solar energy must themselves be manufactured through responsible, low-impact, and resource-conscious industrial processes.
-          </p>
         </div>
       </section>
 

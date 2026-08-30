@@ -113,28 +113,43 @@ export const Gallery: React.FC = () => {
     : GALLERY_ITEMS.filter((item) => item.category === activeCategory);
 
   return (
-    <div className="pt-28 pb-20 space-y-16">
+    <div className="space-y-16">
       {/* ========================================================================= */}
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION WITH AUTHENTIC EXTENSION PHOTO */}
       {/* ========================================================================= */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-        <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs sm:text-sm font-semibold">
-          <Camera className="w-4 h-4 mr-1" />
-          <span>Infrastructure &amp; Operations Showcase</span>
+      <section className="relative overflow-hidden pt-36 pb-20 sm:pb-24 border-b border-emerald-500/20">
+        {/* Background Hero Image with Overlays */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/gallery/extrusion-line-1.jpg"
+            alt="Alishan Automated Extrusion Facility"
+            className="w-full h-full object-cover object-center scale-105 filter brightness-75"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A192F]/95 via-[#0A192F]/85 to-[#0A192F]/65"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-transparent"></div>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-          Manufacturing Facility &amp;{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300">
-            Infrastructure Gallery
-          </span>
-        </h1>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs sm:text-sm font-semibold backdrop-blur-md">
+            <Camera className="w-4 h-4 mr-1" />
+            <span>Infrastructure &amp; Operations Showcase</span>
+          </div>
 
-        <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
-          Take an authentic visual tour inside Alishan Green Energy's manufacturing plants, in-house NABL TC 15544 accredited testing laboratories, climate-controlled cleanrooms, and global clean energy trade expos.
-        </p>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md">
+            Manufacturing Facility &amp;{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300">
+              Infrastructure Gallery
+            </span>
+          </h1>
 
-        {/* Quick Highlights Bar */}
+          <p className="text-slate-200 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed drop-shadow">
+            Take an authentic visual tour inside Alishan Green Energy's manufacturing plants, in-house NABL TC 15544 accredited testing laboratories, climate-controlled cleanrooms, and global clean energy trade expos.
+          </p>
+        </div>
+      </section>
+
+      {/* Quick Highlights Bar */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto pt-4 text-left">
           <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
             <div className="text-emerald-400 font-bold text-lg">Multi-GW</div>
