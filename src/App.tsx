@@ -13,6 +13,7 @@ import Sustainability from './pages/Sustainability';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
 import Career from './pages/Career';
+import NewsEvents from './pages/NewsEvents';
 
 export const App: React.FC = () => {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -64,6 +65,7 @@ export const App: React.FC = () => {
           />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/career" element={<Career />} />
+          <Route path="/news-events" element={<NewsEvents />} />
           <Route path="/contact" element={<Contact />} />
 
           {/* Catch-all fallback */}

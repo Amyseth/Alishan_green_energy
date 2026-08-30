@@ -99,6 +99,12 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/news-events" className="hover:text-emerald-400 transition-colors flex items-center group">
+                  News &amp; Events (Blog)
+                  <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+              </li>
+              <li>
                 <Link to="/sustainability" className="hover:text-emerald-400 transition-colors flex items-center group">
                   Sustainability
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
