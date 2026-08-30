@@ -133,6 +133,51 @@ export const Contact: React.FC = () => {
                   ISO 9001/14001/45001
                 </span>
               </div>
+
+              {/* Social Channels */}
+              <div className="pt-4 border-t border-slate-800/80">
+                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">
+                  Official Channels
+                </span>
+                <div className="flex items-center space-x-2.5">
+                  <a
+                    href="https://www.linkedin.com/company/alishan-green-energy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 transition-colors"
+                    aria-label="LinkedIn"
+                  >
+                    <span className="text-xs font-bold">LinkedIn</span>
+                  </a>
+                  <a
+                    href="https://twitter.com/alishan_green"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 transition-colors"
+                    aria-label="Twitter / X"
+                  >
+                    <span className="text-xs font-bold">X (Twitter)</span>
+                  </a>
+                  <a
+                    href="https://www.facebook.com/alishangreenenergy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 transition-colors"
+                    aria-label="Facebook"
+                  >
+                    <span className="text-xs font-bold">Facebook</span>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/alishangreenenergy/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 transition-colors"
+                    aria-label="Instagram"
+                  >
+                    <span className="text-xs font-bold">Instagram</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 

@@ -10,6 +10,7 @@ import {
   ExternalLink 
 } from 'lucide-react';
 import { COMPANY_INFO } from '../../data/company';
+import { SOCIAL_LINKS } from '../common/SocialIcons';
 
 interface SubItem {
   name: string;
@@ -126,6 +127,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestQuoteClick }) => {
             <PhoneCall className="w-3 h-3 text-emerald-400 mr-1" />
             {COMPANY_INFO.contact.phone}
           </a>
+
+          {/* Social Icons */}
+          <div className="flex items-center space-x-1 pl-3 border-l border-slate-700">
+            {SOCIAL_LINKS.map((s) => (
+              <a
+                key={s.name}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 hover:text-emerald-400 p-1 transition-colors"
+                aria-label={`Follow on ${s.name}`}
+              >
+                {s.icon}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -11,6 +11,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import { COMPANY_INFO } from '../../data/company';
+import { SOCIAL_LINKS } from '../common/SocialIcons';
 
 export const Footer: React.FC = () => {
   return (
@@ -53,6 +54,27 @@ export const Footer: React.FC = () => {
               <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
                 ISO 45001:2018
               </span>
+            </div>
+
+            {/* Social Media Links */}
+            <div className="pt-3">
+              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">
+                Official Social Media
+              </span>
+              <div className="flex items-center space-x-2">
+                {SOCIAL_LINKS.map((s) => (
+                  <a
+                    key={s.name}
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-lg bg-slate-800/90 hover:bg-emerald-500 hover:text-slate-950 border border-slate-700/80 hover:border-emerald-400 flex items-center justify-center text-slate-300 transition-all duration-200"
+                    aria-label={`Visit Alishan Green Energy on ${s.name}`}
+                  >
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
