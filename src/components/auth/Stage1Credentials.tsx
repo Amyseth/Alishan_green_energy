@@ -44,23 +44,23 @@ export const Stage1Credentials: React.FC = () => {
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Work Email */}
+        {/* Work Email or Mobile */}
         <div className="space-y-1.5">
           <label className="text-xs font-bold text-slate-200 flex items-center justify-between">
-            <span>Work Email Address</span>
-            <span className="text-[11px] text-slate-400 font-normal">Registered Corporate Email</span>
+            <span>Work Email or Registered Mobile</span>
+            <span className="text-[11px] text-slate-400 font-normal">Corporate ID / +91 Phone</span>
           </label>
           <div className="relative">
             <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
-              type="email"
+              type="text"
               required
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
                 if (error) clearNotifications();
               }}
-              placeholder="aseth230@gmail.com"
+              placeholder="aseth230@gmail.com or +91 91712 00097"
               className="w-full bg-[#071322] border border-slate-700/80 focus:border-emerald-500 rounded-xl pl-10 pr-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none transition-all focus:ring-1 focus:ring-emerald-500/50 shadow-inner"
             />
           </div>

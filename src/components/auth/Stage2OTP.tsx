@@ -7,13 +7,26 @@ import {
   CheckCircle2,
   AlertTriangle,
   KeyRound,
+  Smartphone,
+  Mail,
+  MessageSquare,
+  QrCode,
+  Copy,
+  Check,
+  ShieldCheck,
+  Sparkles,
 } from 'lucide-react';
 import { use2FA } from '../../context/AuthContext';
+import { getTOTPUri, getQRCodeUrl, DEFAULT_TOTP_SECRET } from '../../utils/totp';
 
 export const Stage2OTP: React.FC = () => {
   const {
     user,
     email,
+    mfaChannel,
+    setMfaChannel,
+    customPhone,
+    sendOtpViaWhatsApp,
     otpExpiresAt,
     resendAvailableAt,
     attemptsLeft,
@@ -30,6 +43,9 @@ export const Stage2OTP: React.FC = () => {
   // 6 separate input boxes
   const [digits, setDigits] = useState<string[]>(['', '', '', '', '', '']);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  // Copied secret state
+  const [hasCopiedSecret, setHasCopiedSecret] = useState(false);
 
   // Timers state
   const [resendSecondsLeft, setResendSecondsLeft] = useState<number>(60);
@@ -72,14 +88,12 @@ export const Stage2OTP: React.FC = () => {
 
   // Handle single digit input
   const handleDigitChange = (index: number, value: string) => {
-    // Only accept numeric digit
     const cleaned = value.replace(/\D/g, '');
     if (!cleaned && value !== '') return;
 
     const newDigits = [...digits];
 
     if (cleaned.length > 1) {
-      // If user pasted or typed multiple digits
       const pastedDigits = cleaned.slice(0, 6).split('');
       pastedDigits.forEach((char, i) => {
         if (index + i < 6) {
@@ -88,11 +102,9 @@ export const Stage2OTP: React.FC = () => {
       });
       setDigits(newDigits);
 
-      // Advance focus to next empty box or the last box
       const nextFocus = Math.min(index + pastedDigits.length, 5);
       inputRefs.current[nextFocus]?.focus();
 
-      // Auto-submit if all 6 filled
       if (newDigits.every((d) => d !== '')) {
         verifyOtp(newDigits.join(''));
       }
@@ -102,22 +114,18 @@ export const Stage2OTP: React.FC = () => {
     newDigits[index] = cleaned;
     setDigits(newDigits);
 
-    // Auto-advance cursor focus to next box
     if (cleaned && index < 5) {
       inputRefs.current[index + 1]?.focus();
     }
 
-    // Auto-verify if all 6 filled
     if (newDigits.every((d) => d !== '')) {
       verifyOtp(newDigits.join(''));
     }
   };
 
-  // Handle Backspace and Arrow navigation
   const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Backspace') {
       if (!digits[index] && index > 0) {
-        // Move focus backward if current is already empty
         const newDigits = [...digits];
         newDigits[index - 1] = '';
         setDigits(newDigits);
@@ -134,7 +142,6 @@ export const Stage2OTP: React.FC = () => {
     }
   };
 
-  // Handle Paste event on any box (Ctrl+V)
   const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault();
     const pastedData = e.clipboardData.getData('text').trim().replace(/\D/g, '');
@@ -163,6 +170,12 @@ export const Stage2OTP: React.FC = () => {
     }
   };
 
+  const handleCopySecret = () => {
+    navigator.clipboard.writeText(DEFAULT_TOTP_SECRET);
+    setHasCopiedSecret(true);
+    setTimeout(() => setHasCopiedSecret(false), 2000);
+  };
+
   const formatExpiryTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -170,6 +183,8 @@ export const Stage2OTP: React.FC = () => {
   };
 
   const isLocked = stage === 'LOCKED';
+  const totpUri = getTOTPUri(user?.email || email || 'aseth230@gmail.com');
+  const qrCodeUrl = getQRCodeUrl(totpUri);
 
   return (
     <div className="space-y-6 animate-fadeIn">
@@ -180,16 +195,129 @@ export const Stage2OTP: React.FC = () => {
           <span>Stage 2: Two-Factor Verification</span>
         </div>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-          Enter 6-Digit OTP Code
+          Enter 6-Digit 2FA Code
         </h2>
         <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-          A 6-digit cryptographic verification token has been sent to:{' '}
-          <strong className="text-emerald-400 font-semibold">{user?.email || email}</strong>
-          <span className="block text-[11px] text-slate-400 mt-1 font-normal">
-            (Check your inbox and Spam / Junk / Promotions folder)
-          </span>
+          Verify your identity using your preferred enterprise 2FA security channel for{' '}
+          <strong className="text-emerald-400 font-semibold">{user?.name || 'Amit Seth'}</strong>.
         </p>
       </div>
+
+      {/* 2FA Delivery Channel Selection Tabs */}
+      <div className="grid grid-cols-3 gap-1.5 p-1 rounded-2xl bg-slate-900/90 border border-slate-800">
+        <button
+          type="button"
+          onClick={() => setMfaChannel('APP')}
+          className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-1.5 ${
+            mfaChannel === 'APP'
+              ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
+              : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+          }`}
+        >
+          <Smartphone className="w-3.5 h-3.5 shrink-0" />
+          <span>Google Auth App</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setMfaChannel('SMS')}
+          className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-1.5 ${
+            mfaChannel === 'SMS'
+              ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
+              : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+          }`}
+        >
+          <MessageSquare className="w-3.5 h-3.5 shrink-0" />
+          <span>Phone / WhatsApp</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setMfaChannel('EMAIL')}
+          className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-1.5 ${
+            mfaChannel === 'EMAIL'
+              ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
+              : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+          }`}
+        >
+          <Mail className="w-3.5 h-3.5 shrink-0" />
+          <span>Work Email</span>
+        </button>
+      </div>
+
+      {/* Channel Specific Instruction Box */}
+      {mfaChannel === 'APP' && (
+        <div className="p-4 rounded-2xl bg-[#071322] border border-emerald-500/30 flex flex-col sm:flex-row items-center gap-4 text-left">
+          <div className="p-2 bg-white rounded-xl shrink-0 shadow-lg">
+            <img
+              src={qrCodeUrl}
+              alt="Google Authenticator QR Code"
+              className="w-24 h-24 object-contain"
+            />
+          </div>
+          <div className="space-y-2 flex-1 text-xs">
+            <div className="font-bold text-white flex items-center space-x-1.5">
+              <QrCode className="w-4 h-4 text-emerald-400" />
+              <span>Scan with Google / Microsoft Authenticator</span>
+            </div>
+            <p className="text-slate-300 leading-relaxed text-[11px]">
+              Open Google Authenticator on your phone, scan this QR code, and type the 6-digit code shown on your phone.
+            </p>
+            <div className="flex items-center space-x-2 pt-1">
+              <span className="text-slate-400 text-[10px]">Secret Key:</span>
+              <code className="px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-emerald-400 font-mono text-[10px] font-bold">
+                {DEFAULT_TOTP_SECRET}
+              </code>
+              <button
+                type="button"
+                onClick={handleCopySecret}
+                className="text-slate-400 hover:text-white p-1 transition-colors"
+                title="Copy Secret Key"
+              >
+                {hasCopiedSecret ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {mfaChannel === 'SMS' && (
+        <div className="p-4 rounded-2xl bg-[#071322] border border-cyan-500/30 space-y-3 text-left">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Smartphone className="w-4 h-4 text-cyan-400" />
+              <span className="text-xs font-bold text-white">Registered Mobile Number</span>
+            </div>
+            <span className="text-xs font-mono font-bold text-cyan-300">{user?.phone || customPhone}</span>
+          </div>
+          <p className="text-[11px] text-slate-300 leading-relaxed">
+            Click below to instantly receive your 6-digit verification passkey via WhatsApp or Mobile SMS alert.
+          </p>
+          <button
+            type="button"
+            onClick={sendOtpViaWhatsApp}
+            className="w-full py-2.5 px-4 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 hover:text-white font-bold text-xs transition-all flex items-center justify-center space-x-2 shadow-sm"
+          >
+            <MessageSquare className="w-4 h-4 text-cyan-400" />
+            <span>Receive 6-Digit Passkey on WhatsApp / Phone</span>
+          </button>
+        </div>
+      )}
+
+      {mfaChannel === 'EMAIL' && (
+        <div className="p-4 rounded-2xl bg-[#071322] border border-emerald-500/30 space-y-2 text-left">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Mail className="w-4 h-4 text-emerald-400" />
+              <span className="text-xs font-bold text-white">Corporate Work Email</span>
+            </div>
+            <span className="text-xs font-mono font-bold text-emerald-300">{user?.email || email}</span>
+          </div>
+          <p className="text-[11px] text-slate-300 leading-relaxed">
+            A cryptographic token was dispatched to your Gmail inbox. (Please check Spam/Junk/Promotions).
+          </p>
+        </div>
+      )}
 
       {/* Lockout Banner */}
       {isLocked && (
@@ -203,7 +331,7 @@ export const Stage2OTP: React.FC = () => {
           </p>
           <div className="flex items-center justify-between pt-2 border-t border-red-500/20 text-xs">
             <span>Lockout expires in: <strong className="text-white font-mono">{formatExpiryTime(lockoutSecondsLeft)}</strong></span>
-            <span className="text-slate-400">Contact IT Sec Ops if needed</span>
+            <span className="text-slate-400">Contact IT Sec Ops</span>
           </div>
         </div>
       )}
@@ -228,7 +356,7 @@ export const Stage2OTP: React.FC = () => {
       <form onSubmit={handleManualSubmit} className="space-y-6">
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs text-slate-300">
-            <span className="font-semibold">6-Digit Verification Token</span>
+            <span className="font-semibold">Enter 6-Digit Code</span>
             <span className="text-[11px] text-slate-400">
               Attempts Left:{' '}
               <strong className={attemptsLeft === 1 ? 'text-red-400 font-bold' : 'text-emerald-400'}>
@@ -298,7 +426,7 @@ export const Stage2OTP: React.FC = () => {
             {isLoading ? (
               <div className="flex items-center space-x-2">
                 <div className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></div>
-                <span>Validating Cryptographic Token...</span>
+                <span>Validating 2FA Token...</span>
               </div>
             ) : (
               <>
@@ -338,9 +466,9 @@ export const Stage2OTP: React.FC = () => {
             </button>
           </div>
 
-          {/* Subtle Security Key Fallback */}
+          {/* Executive Security Passkey Fallback */}
           <div className="pt-2 text-center text-[11px] text-slate-400 border-t border-slate-800/60">
-            External mail delivery delayed? Click to use Executive Passkey{' '}
+            External mail delayed? Enter Executive Emergency Key{' '}
             <button
               type="button"
               onClick={() => {

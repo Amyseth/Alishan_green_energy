@@ -1,9 +1,48 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { AuthState, UserProfile, SecurityAuditLog, DemoCredentials } from '../types/auth';
 import { supabase } from '../lib/supabase';
+import { verifyTOTPCode, DEFAULT_TOTP_SECRET } from '../utils/totp';
 
 export const DEMO_USERS: Record<string, { profile: UserProfile; passwordHash: string }> = {
   'aseth230@gmail.com': {
+    profile: {
+      id: 'usr_age_001',
+      name: 'Amit Seth',
+      email: 'aseth230@gmail.com',
+      phone: '+91 91712 00097',
+      maskedEmail: 'a***0@gmail.com',
+      maskedPhone: '+91 91712 *****',
+      role: 'Chief Technology & Security Officer (CTSO)',
+      department: 'Executive Leadership & Solar Engineering',
+      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
+      location: 'Kamal Vihar HQ & Seoni Plant, Raipur',
+      securityClearance: 'Level 4 - Executive',
+      lastLogin: new Date(Date.now() - 3600000 * 4).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      ipAddress: '103.21.244.18 (Raipur Industrial Zone)',
+      sessionExpiry: new Date(Date.now() + 3600000 * 8).toLocaleTimeString('en-IN'),
+    },
+    passwordHash: 'Alishan@2026',
+  },
+  '9171200097': {
+    profile: {
+      id: 'usr_age_001',
+      name: 'Amit Seth',
+      email: 'aseth230@gmail.com',
+      phone: '+91 91712 00097',
+      maskedEmail: 'a***0@gmail.com',
+      maskedPhone: '+91 91712 *****',
+      role: 'Chief Technology & Security Officer (CTSO)',
+      department: 'Executive Leadership & Solar Engineering',
+      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
+      location: 'Kamal Vihar HQ & Seoni Plant, Raipur',
+      securityClearance: 'Level 4 - Executive',
+      lastLogin: new Date(Date.now() - 3600000 * 4).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      ipAddress: '103.21.244.18 (Raipur Industrial Zone)',
+      sessionExpiry: new Date(Date.now() + 3600000 * 8).toLocaleTimeString('en-IN'),
+    },
+    passwordHash: 'Alishan@2026',
+  },
+  '+919171200097': {
     profile: {
       id: 'usr_age_001',
       name: 'Amit Seth',
@@ -71,7 +110,7 @@ const INITIAL_AUDIT_LOGS: SecurityAuditLog[] = [
     ipAddress: '103.21.244.1 (Gateway)',
     location: 'Raipur, CG, India',
     protocol: 'TLS 1.3 / AES-256',
-    details: '2FA Policy active: Email + 6-digit cryptographic TOTP enforced.',
+    details: '2FA Policy active: Email, SMS/Phone, and Google Authenticator TOTP enabled.',
   },
   {
     id: 'log_02',
@@ -85,8 +124,15 @@ const INITIAL_AUDIT_LOGS: SecurityAuditLog[] = [
   },
 ];
 
+export type MfaChannel = 'EMAIL' | 'SMS' | 'APP';
+
 interface AuthContextType extends AuthState {
-  validateCredentials: (email: string, password: string, remember: boolean) => Promise<boolean>;
+  mfaChannel: MfaChannel;
+  setMfaChannel: (channel: MfaChannel) => void;
+  customPhone: string;
+  setCustomPhone: (phone: string) => void;
+  sendOtpViaWhatsApp: () => void;
+  validateCredentials: (identifier: string, password: string, remember: boolean) => Promise<boolean>;
   verifyOtp: (enteredOtp: string) => Promise<boolean>;
   resendOtp: () => Promise<void>;
   resetToCredentials: () => void;
@@ -107,6 +153,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [stage, setStage] = useState<AuthState['stage']>('CREDENTIALS');
   const [email, setEmail] = useState('');
   const [user, setUser] = useState<UserProfile | null>(null);
+  const [mfaChannel, setMfaChannel] = useState<MfaChannel>('APP');
+  const [customPhone, setCustomPhone] = useState('+91 91712 00097');
   const [otp, setOtp] = useState('');
   const [otpCreatedAt, setOtpCreatedAt] = useState<number | null>(null);
   const [otpExpiresAt, setOtpExpiresAt] = useState<number | null>(null);
@@ -205,17 +253,18 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     // Simulated network delay
     await new Promise((resolve) => setTimeout(resolve, 750));
 
-    const normalizedEmail = inputEmail.trim().toLowerCase();
-    const matchedAccount = DEMO_USERS[normalizedEmail];
+    const rawInput = inputEmail.trim().toLowerCase();
+    const cleanPhone = rawInput.replace(/[\s\-\(\)]/g, '');
+    const matchedAccount = DEMO_USERS[rawInput] || DEMO_USERS[cleanPhone];
 
     if (!matchedAccount || matchedAccount.passwordHash !== inputPassword) {
       setIsLoading(false);
-      const errMsg = 'Invalid work email or security password. Please check your credentials.';
+      const errMsg = 'Invalid work email, phone number, or security password.';
       setError(errMsg);
       addAuditLog(
         'Primary Authentication Failed',
         'FAILED',
-        `Failed password attempt for account [${normalizedEmail || 'empty'}]`
+        `Failed password attempt for identifier [${rawInput || 'empty'}]`
       );
       return false;
     }
@@ -230,6 +279,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     console.log('%c[ALISHAN SECURITY GATEWAY 2FA]', 'color: #10b981; font-weight: bold; font-size: 13px;');
     console.log(`%c🔐 Active Session OTP: %c${newOtp}`, 'color: #94a3b8;', 'color: #34d399; font-weight: bold; font-size: 15px;');
     console.log('%c🔑 Executive Emergency Master PIN: %c202626', 'color: #94a3b8;', 'color: #38bdf8; font-weight: bold;');
+    console.log('%c📱 Google Authenticator Key: %cJBSWY3DPEHPK3PXP', 'color: #94a3b8;', 'color: #fbbf24; font-weight: bold;');
 
     // Dispatch real email via Supabase Auth OTP to recipient
     let realEmailDispatched = false;
@@ -249,8 +299,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       }
     }
 
-    setEmail(normalizedEmail);
+    setEmail(matchedAccount.profile.email);
     setUser(matchedAccount.profile);
+    setCustomPhone(matchedAccount.profile.phone);
     setOtp(newOtp);
     setOtpCreatedAt(now);
     setOtpExpiresAt(expiry);
@@ -260,13 +311,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setStage('OTP');
     setIsLoading(false);
     setSuccessNotification(
-      `Primary credentials verified. 6-digit OTP token dispatched to ${matchedAccount.profile.email}.`
+      `Primary credentials verified. 2FA verification channel ready for ${matchedAccount.profile.name}.`
     );
 
     addAuditLog(
       'Primary Credentials Accepted & 2FA Initiated',
       'SUCCESS',
-      `Stage 1 passed for ${matchedAccount.profile.name} (${normalizedEmail}). Email dispatch: ${realEmailDispatched ? 'SENT VIA SUPABASE' : 'STANDBY'}.`
+      `Stage 1 passed for ${matchedAccount.profile.name} (${matchedAccount.profile.email}). Real dispatch: ${realEmailDispatched ? 'SENT VIA SUPABASE' : 'MULTI-CHANNEL ACTIVE'}.`
     );
 
     return true;
@@ -279,7 +330,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setSuccessNotification(null);
 
     // Simulated micro-verification delay
-    await new Promise((resolve) => setTimeout(resolve, 600));
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     // 1. Check if expired
     if (!otpExpiresAt || Date.now() > otpExpiresAt) {
@@ -289,9 +340,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       return false;
     }
 
-    // 2. Check correctness: verify against local OTP, Executive Master Key 202626 / 123456, or live Supabase Auth OTP
+    // 2. Check correctness: verify against local OTP, Google Authenticator RFC 6238, Executive Master Key 202626 / 123456, or live Supabase Auth OTP
     const cleanToken = enteredOtp.trim();
-    let isMatch = (cleanToken === otp) || (cleanToken === '202626') || (cleanToken === '123456');
+    const isTotpValid = await verifyTOTPCode(cleanToken, DEFAULT_TOTP_SECRET);
+    let isMatch = (cleanToken === otp) || (cleanToken === '202626') || (cleanToken === '123456') || isTotpValid;
 
     if (!isMatch && supabase) {
       try {
@@ -358,10 +410,20 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     addAuditLog(
       '2FA Completed — Session Granted',
       'SUCCESS',
-      `Full MFA pipeline completed for ${user?.name} (${user?.role}). Single-use OTP successfully invalidated.`
+      `Full MFA pipeline completed for ${user?.name} (${user?.role}). Verification source: ${isTotpValid ? 'GOOGLE AUTHENTICATOR APP' : 'CRYPTOGRAPHIC OTP/PASSKEY'}.`
     );
 
     return true;
+  };
+
+  // Dispatch OTP via WhatsApp link
+  const sendOtpViaWhatsApp = () => {
+    const activeToken = otp || '202626';
+    const targetPhone = (customPhone || user?.phone || '9171200097').replace(/\D/g, '');
+    const msg = encodeURIComponent(`*ALISHAN GREEN ENERGY - 2FA SECURITY GATEWAY*\nYour One-Time Verification Passkey is: *${activeToken}*\nValid for 5 minutes.`);
+    window.open(`https://wa.me/${targetPhone}?text=${msg}`, '_blank');
+    setSuccessNotification(`WhatsApp dispatch opened for ${user?.phone || customPhone}.`);
+    addAuditLog('2FA Dispatched via WhatsApp', 'SUCCESS', `Token sent to mobile ${user?.phone || customPhone}.`);
   };
 
   // Resend OTP
@@ -384,6 +446,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     console.log('%c[ALISHAN SECURITY GATEWAY 2FA REFRESH]', 'color: #10b981; font-weight: bold; font-size: 13px;');
     console.log(`%c🔐 Fresh Session OTP: %c${newOtp}`, 'color: #94a3b8;', 'color: #34d399; font-weight: bold; font-size: 15px;');
     console.log('%c🔑 Executive Emergency Master PIN: %c202626', 'color: #94a3b8;', 'color: #38bdf8; font-weight: bold;');
+    console.log('%c📱 Google Authenticator Key: %cJBSWY3DPEHPK3PXP', 'color: #94a3b8;', 'color: #fbbf24; font-weight: bold;');
 
     let resendSent = false;
     if (supabase) {
@@ -407,9 +470,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setAttemptsLeft(3); // Reset attempts on freshly issued OTP
     setIsLoading(false);
     setSuccessNotification(
-      resendSent
-        ? `A fresh 6-digit OTP has been sent to your Gmail inbox ${user?.email || email}.`
-        : `A fresh 6-digit OTP has been dispatched to ${user?.maskedEmail || email}.`
+      `A fresh 6-digit OTP has been generated for ${user?.name || email}.`
     );
 
     addAuditLog(
@@ -439,8 +500,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   // Reviewer helper functions
-  const fillDemoCredentials = (userKey = 'admin@alishangreenenergy.com') => {
-    const acc = DEMO_USERS[userKey] || DEMO_USERS['admin@alishangreenenergy.com'];
+  const fillDemoCredentials = (userKey = 'aseth230@gmail.com') => {
+    const acc = DEMO_USERS[userKey] || DEMO_USERS['aseth230@gmail.com'];
     return { email: acc.profile.email, pass: acc.passwordHash };
   };
 
@@ -457,8 +518,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setLockoutUntil(null);
     setAttemptsLeft(3);
     setError(null);
-    setSuccessNotification('Session unlocked manually by Reviewer Helper.');
-    addAuditLog('Lockout Override', 'WARNING', 'Session unlocked via Demo Reviewer Simulation tool.');
+    setSuccessNotification('Session unlocked manually.');
+    addAuditLog('Lockout Override', 'WARNING', 'Session unlocked.');
   };
 
   const clearNotifications = () => {
@@ -472,6 +533,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         stage,
         email,
         user,
+        mfaChannel,
+        setMfaChannel,
+        customPhone,
+        setCustomPhone,
+        sendOtpViaWhatsApp,
         otp,
         otpCreatedAt,
         otpExpiresAt,
