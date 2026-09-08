@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Lock, Eye, EyeOff, ShieldCheck, ArrowRight, Sparkles, AlertCircle } from 'lucide-react';
-import { use2FA, DEMO_USERS } from '../../context/AuthContext';
+import { Mail, Lock, Eye, EyeOff, ShieldCheck, ArrowRight, AlertCircle } from 'lucide-react';
+import { use2FA } from '../../context/AuthContext';
 import ForgotPasswordModal from './ForgotPasswordModal';
 
 export const Stage1Credentials: React.FC = () => {
@@ -16,15 +16,6 @@ export const Stage1Credentials: React.FC = () => {
     e.preventDefault();
     if (!email || !password || isLoading) return;
     await validateCredentials(email, password, rememberMe);
-  };
-
-  const handleSelectQuickAccount = (demoEmail: string) => {
-    const acc = DEMO_USERS[demoEmail];
-    if (acc) {
-      setEmail(acc.profile.email);
-      setPassword(acc.passwordHash);
-      clearNotifications();
-    }
   };
 
   return (
@@ -144,45 +135,6 @@ export const Stage1Credentials: React.FC = () => {
           )}
         </button>
       </form>
-
-      {/* Quick Select Demo Accounts for Reviewer */}
-      <div className="pt-4 border-t border-slate-800/80 space-y-2.5">
-        <div className="flex items-center justify-between text-[11px] text-slate-400">
-          <span className="flex items-center space-x-1 font-semibold text-slate-300">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>Quick-Load Demo Test Accounts</span>
-          </span>
-          <span>Click to autofill</span>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <button
-            type="button"
-            onClick={() => handleSelectQuickAccount('aseth230@gmail.com')}
-            className={`p-2.5 rounded-xl border text-left transition-all ${
-              email === 'aseth230@gmail.com'
-                ? 'bg-emerald-500/15 border-emerald-500/50 text-white'
-                : 'bg-slate-900/60 border-slate-800 text-slate-300 hover:border-slate-700'
-            }`}
-          >
-            <div className="text-xs font-bold text-emerald-400">Amit Seth (CTSO)</div>
-            <div className="text-[11px] text-slate-300 truncate">aseth230@gmail.com</div>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleSelectQuickAccount('qa.lead@alishangreenenergy.com')}
-            className={`p-2.5 rounded-xl border text-left transition-all ${
-              email === 'qa.lead@alishangreenenergy.com'
-                ? 'bg-emerald-500/15 border-emerald-500/50 text-white'
-                : 'bg-slate-900/60 border-slate-800 text-slate-300 hover:border-slate-700'
-            }`}
-          >
-            <div className="text-xs font-bold text-teal-400">NABL Lab Lead</div>
-            <div className="text-[11px] text-slate-300 truncate">qa.lead@alishangreenenergy.com</div>
-          </button>
-        </div>
-      </div>
 
       {/* Forgot Password Modal */}
       <ForgotPasswordModal

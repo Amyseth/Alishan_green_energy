@@ -13,7 +13,6 @@ import { use2FA } from '../context/AuthContext';
 import Stage1Credentials from '../components/auth/Stage1Credentials';
 import Stage2OTP from '../components/auth/Stage2OTP';
 import AdminDashboard from '../components/auth/AdminDashboard';
-import ReviewerHelperCard from '../components/auth/ReviewerHelperCard';
 
 export const EnterpriseSecurityPortal: React.FC = () => {
   const { stage } = use2FA();
@@ -23,7 +22,6 @@ export const EnterpriseSecurityPortal: React.FC = () => {
     return (
       <div className="pt-24 pb-20 min-h-screen bg-[#070F1E]">
         <AdminDashboard />
-        <ReviewerHelperCard />
       </div>
     );
   }
@@ -131,9 +129,6 @@ export const EnterpriseSecurityPortal: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Floating Reviewer Simulation Helper */}
-      <ReviewerHelperCard />
     </div>
   );
 };

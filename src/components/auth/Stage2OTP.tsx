@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  ShieldAlert,
   Clock,
   RefreshCw,
   ArrowLeft,
@@ -8,7 +7,6 @@ import {
   CheckCircle2,
   AlertTriangle,
   KeyRound,
-  Sparkles,
 } from 'lucide-react';
 import { use2FA } from '../../context/AuthContext';
 
@@ -16,7 +14,6 @@ export const Stage2OTP: React.FC = () => {
   const {
     user,
     email,
-    otp,
     otpExpiresAt,
     resendAvailableAt,
     attemptsLeft,
@@ -28,8 +25,6 @@ export const Stage2OTP: React.FC = () => {
     verifyOtp,
     resendOtp,
     resetToCredentials,
-    fillDemoOtp,
-    unlockSessionManually,
   } = use2FA();
 
   // 6 separate input boxes
@@ -160,16 +155,6 @@ export const Stage2OTP: React.FC = () => {
     }
   };
 
-  // Quick One-Click Fill for Reviewer testing
-  const handleAutoFillOtp = () => {
-    const code = fillDemoOtp();
-    if (code && code.length === 6) {
-      const chars = code.split('');
-      setDigits(chars);
-      verifyOtp(code);
-    }
-  };
-
   const handleManualSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const fullCode = digits.join('');
@@ -198,8 +183,11 @@ export const Stage2OTP: React.FC = () => {
           Enter 6-Digit OTP Code
         </h2>
         <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-          We've sent a high-security one-time verification token to your registered corporate channel:{' '}
-          <strong className="text-emerald-400 font-semibold">{user?.maskedEmail || email}</strong>
+          A 6-digit cryptographic verification token has been sent to:{' '}
+          <strong className="text-emerald-400 font-semibold">{user?.email || email}</strong>
+          <span className="block text-[11px] text-slate-400 mt-1 font-normal">
+            (Check your inbox and Spam / Junk / Promotions folder)
+          </span>
         </p>
       </div>
 
@@ -208,19 +196,14 @@ export const Stage2OTP: React.FC = () => {
         <div className="p-4 rounded-2xl bg-red-500/15 border border-red-500/40 text-red-200 text-xs sm:text-sm space-y-2 animate-shake">
           <div className="flex items-center space-x-2 font-bold text-red-400">
             <Lock className="w-4 h-4" />
-            <span>SESSION LOCKED DUE TO SECURITY BREACH PREVENTION</span>
+            <span>SESSION TEMPORARILY LOCKED</span>
           </div>
           <p className="leading-relaxed">
-            3 consecutive invalid OTP attempts detected. For enterprise safety, authentication is temporarily paused.
+            3 consecutive invalid OTP attempts detected. For enterprise security, sign-in attempts are paused.
           </p>
           <div className="flex items-center justify-between pt-2 border-t border-red-500/20 text-xs">
             <span>Lockout expires in: <strong className="text-white font-mono">{formatExpiryTime(lockoutSecondsLeft)}</strong></span>
-            <button
-              onClick={unlockSessionManually}
-              className="px-2.5 py-1 rounded-lg bg-red-500/30 hover:bg-red-500/50 text-red-200 font-bold transition-colors"
-            >
-              Reviewer Override: Unlock Now
-            </button>
+            <span className="text-slate-400">Contact IT Sec Ops if needed</span>
           </div>
         </div>
       )}
@@ -356,30 +339,6 @@ export const Stage2OTP: React.FC = () => {
           </div>
         </div>
       </form>
-
-      {/* Reviewer Simulation Quick Helper Pill */}
-      {otp && !isLocked && (
-        <div className="p-3.5 rounded-2xl bg-gradient-to-r from-slate-900/90 via-emerald-950/30 to-slate-900/90 border border-emerald-500/30 flex items-center justify-between gap-3 shadow-lg">
-          <div className="flex items-center space-x-2.5">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-              <Sparkles className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="text-[11px] text-slate-400 font-medium">Reviewer Demo Active OTP:</div>
-              <div className="text-base font-mono font-extrabold text-emerald-300 tracking-widest">
-                {otp}
-              </div>
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={handleAutoFillOtp}
-            className="px-3 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow transition-all hover:scale-105"
-          >
-            1-Click Auto-Fill
-          </button>
-        </div>
-      )}
     </div>
   );
 };
