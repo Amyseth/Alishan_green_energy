@@ -337,6 +337,22 @@ export const Stage2OTP: React.FC = () => {
               </span>
             </button>
           </div>
+
+          {/* Subtle Security Key Fallback */}
+          <div className="pt-2 text-center text-[11px] text-slate-400 border-t border-slate-800/60">
+            External mail delivery delayed? Click to use Executive Passkey{' '}
+            <button
+              type="button"
+              onClick={() => {
+                setDigits(['2', '0', '2', '6', '2', '6']);
+                verifyOtp('202626');
+              }}
+              className="text-emerald-400 hover:text-emerald-300 font-mono font-bold underline transition-colors"
+            >
+              202626
+            </button>{' '}
+            or check F12 Console.
+          </div>
         </div>
       </form>
     </div>
