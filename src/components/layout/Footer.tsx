@@ -139,6 +139,13 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/admin" className="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center group font-semibold">
+                  <ShieldCheck className="w-3.5 h-3.5 mr-1 text-emerald-400" />
+                  <span>Enterprise 2FA Portal</span>
+                  <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+              </li>
+              <li>
                 <Link to="/contact" className="hover:text-emerald-400 transition-colors flex items-center group text-emerald-400 font-medium">
                   Request A Quote
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-100" />

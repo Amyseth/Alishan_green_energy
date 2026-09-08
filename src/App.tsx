@@ -14,6 +14,8 @@ import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
 import Career from './pages/Career';
 import NewsEvents from './pages/NewsEvents';
+import EnterpriseSecurityPortal from './pages/EnterpriseSecurityPortal';
+import { AuthProvider } from './context/AuthContext';
 
 export const App: React.FC = () => {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -30,62 +32,70 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0A192F] text-slate-100 selection:bg-emerald-500 selection:text-slate-950 font-sans">
-      <ScrollToTop />
-      
-      {/* Main Header / Navigation */}
-      <Navbar onRequestQuoteClick={() => handleOpenQuoteModal()} />
+    <AuthProvider>
+      <div className="min-h-screen flex flex-col bg-[#0A192F] text-slate-100 selection:bg-emerald-500 selection:text-slate-950 font-sans">
+        <ScrollToTop />
+        
+        {/* Main Header / Navigation */}
+        <Navbar onRequestQuoteClick={() => handleOpenQuoteModal()} />
 
-      {/* Main Page Content */}
-      <main className="flex-grow">
-        <Routes>
-          <Route
-            path="/"
-            element={<Home onRequestQuote={handleOpenQuoteModal} />}
-          />
-          <Route
-            path="/about"
-            element={<About onRequestQuote={() => handleOpenQuoteModal()} />}
-          />
-          <Route
-            path="/products"
-            element={<Products onRequestQuote={handleOpenQuoteModal} />}
-          />
-          <Route
-            path="/rd-certifications"
-            element={
-              <RdCertifications onRequestQuote={() => handleOpenQuoteModal()} />
-            }
-          />
-          <Route
-            path="/sustainability"
-            element={
-              <Sustainability onRequestQuote={() => handleOpenQuoteModal()} />
-            }
-          />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/career" element={<Career />} />
-          <Route path="/news-events" element={<NewsEvents />} />
-          <Route path="/contact" element={<Contact />} />
+        {/* Main Page Content */}
+        <main className="flex-grow">
+          <Routes>
+            <Route
+              path="/"
+              element={<Home onRequestQuote={handleOpenQuoteModal} />}
+            />
+            <Route
+              path="/about"
+              element={<About onRequestQuote={() => handleOpenQuoteModal()} />}
+            />
+            <Route
+              path="/products"
+              element={<Products onRequestQuote={handleOpenQuoteModal} />}
+            />
+            <Route
+              path="/rd-certifications"
+              element={
+                <RdCertifications onRequestQuote={() => handleOpenQuoteModal()} />
+              }
+            />
+            <Route
+              path="/sustainability"
+              element={
+                <Sustainability onRequestQuote={() => handleOpenQuoteModal()} />
+              }
+            />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/career" element={<Career />} />
+            <Route path="/news-events" element={<NewsEvents />} />
+            <Route path="/contact" element={<Contact />} />
 
-          {/* Catch-all fallback */}
-          <Route
-            path="*"
-            element={<Home onRequestQuote={handleOpenQuoteModal} />}
-          />
-        </Routes>
-      </main>
+            {/* Enterprise 2FA Security Portal Routes */}
+            <Route path="/admin" element={<EnterpriseSecurityPortal />} />
+            <Route path="/portal" element={<EnterpriseSecurityPortal />} />
+            <Route path="/security-login" element={<EnterpriseSecurityPortal />} />
+            <Route path="/login" element={<EnterpriseSecurityPortal />} />
 
-      {/* Corporate B2B Footer */}
-      <Footer />
+            {/* Catch-all fallback */}
+            <Route
+              path="*"
+              element={<Home onRequestQuote={handleOpenQuoteModal} />}
+            />
+          </Routes>
+        </main>
 
-      {/* Global RFQ / Quote Modal */}
-      <QuoteModal
-        isOpen={isQuoteModalOpen}
-        onClose={handleCloseQuoteModal}
-        initialProduct={prefilledProduct}
-      />
-    </div>
+        {/* Corporate B2B Footer */}
+        <Footer />
+
+        {/* Global RFQ / Quote Modal */}
+        <QuoteModal
+          isOpen={isQuoteModalOpen}
+          onClose={handleCloseQuoteModal}
+          initialProduct={prefilledProduct}
+        />
+      </div>
+    </AuthProvider>
   );
 };
 

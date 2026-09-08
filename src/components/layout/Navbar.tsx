@@ -226,8 +226,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestQuoteClick }) => {
             })}
           </nav>
 
-          {/* Request Quote Action */}
-          <div className="hidden lg:flex items-center space-x-3 shrink-0">
+          {/* Request Quote Action & Security Portal */}
+          <div className="hidden lg:flex items-center space-x-2.5 shrink-0">
+            <Link
+              to="/admin"
+              className="inline-flex items-center px-3 py-2 rounded-xl text-xs font-semibold bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-emerald-400 border border-slate-700/80 hover:border-emerald-500/40 transition-all space-x-1.5 shadow"
+              title="Enterprise 2FA Security Portal"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="hidden xl:inline">Security Portal</span>
+              <span className="xl:hidden">2FA</span>
+            </Link>
+
             {onRequestQuoteClick ? (
               <button
                 type="button"
@@ -335,7 +345,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestQuoteClick }) => {
             );
           })}
 
-          <div className="pt-3">
+          <div className="pt-3 space-y-2">
+            <Link
+              to="/admin"
+              onClick={() => setIsOpen(false)}
+              className="w-full flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-900 border border-emerald-500/30 text-emerald-400"
+            >
+              <ShieldCheck className="w-4 h-4 mr-2 text-emerald-400" />
+              <span>Enterprise 2FA Portal</span>
+            </Link>
+
             {onRequestQuoteClick ? (
               <button
                 type="button"
