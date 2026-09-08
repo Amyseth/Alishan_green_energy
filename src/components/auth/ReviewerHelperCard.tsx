@@ -100,7 +100,7 @@ export const ReviewerHelperCard: React.FC = () => {
               <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 font-mono text-[11px] space-y-1 text-slate-300">
                 <div className="flex justify-between">
                   <span className="text-slate-500">Email:</span>
-                  <span className="text-emerald-400">admin@alishangreenenergy.com</span>
+                  <span className="text-emerald-400 font-bold">aseth230@gmail.com</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-500">Password:</span>

@@ -2,13 +2,32 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { AuthState, UserProfile, SecurityAuditLog, DemoCredentials } from '../types/auth';
 
 export const DEMO_USERS: Record<string, { profile: UserProfile; passwordHash: string }> = {
+  'aseth230@gmail.com': {
+    profile: {
+      id: 'usr_age_001',
+      name: 'Amit Seth',
+      email: 'aseth230@gmail.com',
+      phone: '+91 91712 00097',
+      maskedEmail: 'a***0@gmail.com',
+      maskedPhone: '+91 91712 *****',
+      role: 'Chief Technology & Security Officer (CTSO)',
+      department: 'Executive Leadership & Solar Engineering',
+      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
+      location: 'Kamal Vihar HQ & Seoni Plant, Raipur',
+      securityClearance: 'Level 4 - Executive',
+      lastLogin: new Date(Date.now() - 3600000 * 4).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      ipAddress: '103.21.244.18 (Raipur Industrial Zone)',
+      sessionExpiry: new Date(Date.now() + 3600000 * 8).toLocaleTimeString('en-IN'),
+    },
+    passwordHash: 'Alishan@2026',
+  },
   'admin@alishangreenenergy.com': {
     profile: {
       id: 'usr_age_001',
-      name: 'Dr. Rajesh Sharma',
-      email: 'admin@alishangreenenergy.com',
+      name: 'Amit Seth',
+      email: 'aseth230@gmail.com',
       phone: '+91 91712 00097',
-      maskedEmail: 'a***n@alishangreenenergy.com',
+      maskedEmail: 'a***0@gmail.com',
       maskedPhone: '+91 91712 *****',
       role: 'Chief Technology & Security Officer (CTSO)',
       department: 'Executive Leadership & Solar Engineering',

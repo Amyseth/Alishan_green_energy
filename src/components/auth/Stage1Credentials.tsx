@@ -6,7 +6,7 @@ import ForgotPasswordModal from './ForgotPasswordModal';
 export const Stage1Credentials: React.FC = () => {
   const { validateCredentials, isLoading, error, clearNotifications } = use2FA();
 
-  const [email, setEmail] = useState('admin@alishangreenenergy.com');
+  const [email, setEmail] = useState('aseth230@gmail.com');
   const [password, setPassword] = useState('Alishan@2026');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
@@ -69,7 +69,7 @@ export const Stage1Credentials: React.FC = () => {
                 setEmail(e.target.value);
                 if (error) clearNotifications();
               }}
-              placeholder="name@alishangreenenergy.com"
+              placeholder="aseth230@gmail.com"
               className="w-full bg-[#071322] border border-slate-700/80 focus:border-emerald-500 rounded-xl pl-10 pr-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none transition-all focus:ring-1 focus:ring-emerald-500/50 shadow-inner"
             />
           </div>
@@ -158,15 +158,15 @@ export const Stage1Credentials: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <button
             type="button"
-            onClick={() => handleSelectQuickAccount('admin@alishangreenenergy.com')}
+            onClick={() => handleSelectQuickAccount('aseth230@gmail.com')}
             className={`p-2.5 rounded-xl border text-left transition-all ${
-              email === 'admin@alishangreenenergy.com'
+              email === 'aseth230@gmail.com'
                 ? 'bg-emerald-500/15 border-emerald-500/50 text-white'
                 : 'bg-slate-900/60 border-slate-800 text-slate-300 hover:border-slate-700'
             }`}
           >
-            <div className="text-xs font-bold text-emerald-400">Executive Director</div>
-            <div className="text-[11px] text-slate-300 truncate">admin@alishangreenenergy.com</div>
+            <div className="text-xs font-bold text-emerald-400">Amit Seth (CTSO)</div>
+            <div className="text-[11px] text-slate-300 truncate">aseth230@gmail.com</div>
           </button>
 
           <button
