@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { AuthState, UserProfile, SecurityAuditLog, DemoCredentials } from '../types/auth';
+import { supabase } from '../lib/supabase';
 
 export const DEMO_USERS: Record<string, { profile: UserProfile; passwordHash: string }> = {
   'aseth230@gmail.com': {
@@ -225,6 +226,24 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const expiry = now + 5 * 60 * 1000; // 5 minutes validity
     const resendWindow = now + 60 * 1000; // 60s resend timer
 
+    // Dispatch real email via Supabase Auth OTP to recipient
+    let realEmailDispatched = false;
+    if (supabase) {
+      try {
+        const { error: supabaseErr } = await supabase.auth.signInWithOtp({
+          email: matchedAccount.profile.email,
+          options: {
+            shouldCreateUser: true,
+          },
+        });
+        if (!supabaseErr) {
+          realEmailDispatched = true;
+        }
+      } catch {
+        // Fallback gracefully
+      }
+    }
+
     setEmail(normalizedEmail);
     setUser(matchedAccount.profile);
     setOtp(newOtp);
@@ -236,13 +255,15 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setStage('OTP');
     setIsLoading(false);
     setSuccessNotification(
-      `Primary credentials verified. A 6-digit OTP was dispatched to ${matchedAccount.profile.maskedEmail}.`
+      realEmailDispatched
+        ? `Real 6-digit OTP dispatched to ${matchedAccount.profile.email}! Please check your Gmail inbox & spam folder.`
+        : `Primary credentials verified. A 6-digit OTP was dispatched to ${matchedAccount.profile.maskedEmail}.`
     );
 
     addAuditLog(
       'Primary Credentials Accepted & 2FA Initiated',
       'SUCCESS',
-      `Stage 1 passed for ${matchedAccount.profile.name} (${normalizedEmail}). 6-digit OTP generated with 5-min TTL.`
+      `Stage 1 passed for ${matchedAccount.profile.name} (${normalizedEmail}). Real email dispatch status: ${realEmailDispatched ? 'SENT TO GMAIL' : 'SIMULATED'}.`
     );
 
     return true;
@@ -265,8 +286,25 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       return false;
     }
 
-    // 2. Check correctness
-    if (enteredOtp.trim() !== otp) {
+    // 2. Check correctness: verify against local OTP or live Supabase Auth OTP
+    let isMatch = (enteredOtp.trim() === otp);
+
+    if (!isMatch && supabase) {
+      try {
+        const { data, error: verifyErr } = await supabase.auth.verifyOtp({
+          email: user?.email || email,
+          token: enteredOtp.trim(),
+          type: 'email',
+        });
+        if (!verifyErr && data?.session) {
+          isMatch = true;
+        }
+      } catch {
+        // Continue with evaluation
+      }
+    }
+
+    if (!isMatch) {
       const remaining = attemptsLeft - 1;
       setAttemptsLeft(remaining);
       setIsLoading(false);
@@ -339,13 +377,32 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const expiry = now + 5 * 60 * 1000;
     const resendWindow = now + 60 * 1000;
 
+    let resendSent = false;
+    if (supabase) {
+      try {
+        const { error: err } = await supabase.auth.signInWithOtp({
+          email: user?.email || email,
+          options: {
+            shouldCreateUser: true,
+          },
+        });
+        if (!err) resendSent = true;
+      } catch {
+        // Fallback
+      }
+    }
+
     setOtp(newOtp);
     setOtpCreatedAt(now);
     setOtpExpiresAt(expiry);
     setResendAvailableAt(resendWindow);
     setAttemptsLeft(3); // Reset attempts on freshly issued OTP
     setIsLoading(false);
-    setSuccessNotification(`A fresh 6-digit OTP has been dispatched to ${user?.maskedEmail || email}.`);
+    setSuccessNotification(
+      resendSent
+        ? `A fresh 6-digit OTP has been sent to your Gmail inbox ${user?.email || email}.`
+        : `A fresh 6-digit OTP has been dispatched to ${user?.maskedEmail || email}.`
+    );
 
     addAuditLog(
       '2FA OTP Regenerated',
