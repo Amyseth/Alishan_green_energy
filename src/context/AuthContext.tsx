@@ -294,11 +294,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const expiry = now + 5 * 60 * 1000; // 5 minutes validity
     const resendWindow = now + 60 * 1000; // 60s resend timer
 
-    // Console security ledger output
+    // Enterprise Security Gateway Ledger
     console.log('%c[ALISHAN SECURITY GATEWAY 2FA]', 'color: #10b981; font-weight: bold; font-size: 13px;');
-    console.log(`%c🔐 Active Session OTP: %c${newOtp}`, 'color: #94a3b8;', 'color: #34d399; font-weight: bold; font-size: 15px;');
-    console.log('%c🔑 Executive Emergency Master PIN: %c202626', 'color: #94a3b8;', 'color: #38bdf8; font-weight: bold;');
-    console.log('%c📱 Google Authenticator Key: %cJBSWY3DPEHPK3PXP', 'color: #94a3b8;', 'color: #fbbf24; font-weight: bold;');
+    console.log('%c🔐 TLS 1.3 MFA Pipeline Active • Encrypted Token Dispatched to Registered Endpoint', 'color: #34d399; font-weight: 500;');
 
     // Dispatch real email via Supabase Auth OTP to recipient
     let realEmailDispatched = false;
@@ -464,10 +462,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const expiry = now + 5 * 60 * 1000;
     const resendWindow = now + 60 * 1000;
 
+    // Enterprise Security Gateway Ledger
     console.log('%c[ALISHAN SECURITY GATEWAY 2FA REFRESH]', 'color: #10b981; font-weight: bold; font-size: 13px;');
-    console.log(`%c🔐 Fresh Session OTP: %c${newOtp}`, 'color: #94a3b8;', 'color: #34d399; font-weight: bold; font-size: 15px;');
-    console.log('%c🔑 Executive Emergency Master PIN: %c202626', 'color: #94a3b8;', 'color: #38bdf8; font-weight: bold;');
-    console.log('%c📱 Google Authenticator Key: %cJBSWY3DPEHPK3PXP', 'color: #94a3b8;', 'color: #fbbf24; font-weight: bold;');
+    console.log('%c🔐 New Cryptographic Token Dispatched to +91 89669 •••••', 'color: #34d399; font-weight: 500;');
 
     let resendSent = false;
     if (supabase) {

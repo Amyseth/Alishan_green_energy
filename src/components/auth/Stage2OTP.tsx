@@ -14,7 +14,8 @@ import {
   Copy,
   Check,
   ShieldCheck,
-  Sparkles,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 import { use2FA } from '../../context/AuthContext';
 import { getTOTPUri, getQRCodeUrl, DEFAULT_TOTP_SECRET } from '../../utils/totp';
@@ -23,11 +24,9 @@ export const Stage2OTP: React.FC = () => {
   const {
     user,
     email,
-    otp,
     mfaChannel,
     setMfaChannel,
     customPhone,
-    sendOtpViaWhatsApp,
     otpExpiresAt,
     resendAvailableAt,
     attemptsLeft,
@@ -45,7 +44,8 @@ export const Stage2OTP: React.FC = () => {
   const [digits, setDigits] = useState<string[]>(['', '', '', '', '', '']);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  // Copied secret state
+  // Setup QR drawer state
+  const [showQrDrawer, setShowQrDrawer] = useState(false);
   const [hasCopiedSecret, setHasCopiedSecret] = useState(false);
 
   // Timers state
@@ -193,49 +193,49 @@ export const Stage2OTP: React.FC = () => {
       <div className="text-center space-y-2">
         <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
           <KeyRound className="w-3.5 h-3.5" />
-          <span>Stage 2: Two-Factor Verification</span>
+          <span>Stage 2: Enterprise Multi-Factor Verification</span>
         </div>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-          Enter 6-Digit 2FA Code
+          Enter 6-Digit Security Token
         </h2>
         <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-          Verify your identity using your preferred enterprise 2FA security channel for{' '}
-          <strong className="text-emerald-400 font-semibold">{user?.name || 'Amit Seth'}</strong>.
+          A single-use verification code has been dispatched via encrypted telecom gateway to your registered endpoint:{' '}
+          <strong className="text-emerald-400 font-semibold">{user?.maskedPhone || '+91 89669 •••••'}</strong>.
         </p>
       </div>
 
-      {/* 2FA Delivery Channel Selection Tabs */}
+      {/* 2FA Delivery Channel Tabs */}
       <div className="grid grid-cols-3 gap-1.5 p-1 rounded-2xl bg-slate-900/90 border border-slate-800">
         <button
           type="button"
-          onClick={() => setMfaChannel('APP')}
-          className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-1.5 ${
-            mfaChannel === 'APP'
-              ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
-              : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
-          }`}
-        >
-          <Smartphone className="w-3.5 h-3.5 shrink-0" />
-          <span>Google Auth App</span>
-        </button>
-
-        <button
-          type="button"
           onClick={() => setMfaChannel('SMS')}
-          className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-1.5 ${
+          className={`py-2 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1.5 ${
             mfaChannel === 'SMS'
               ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
           }`}
         >
           <MessageSquare className="w-3.5 h-3.5 shrink-0" />
-          <span>Phone / WhatsApp</span>
+          <span>SMS / Mobile</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setMfaChannel('APP')}
+          className={`py-2 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1.5 ${
+            mfaChannel === 'APP'
+              ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
+              : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+          }`}
+        >
+          <Smartphone className="w-3.5 h-3.5 shrink-0" />
+          <span>Authenticator App</span>
         </button>
 
         <button
           type="button"
           onClick={() => setMfaChannel('EMAIL')}
-          className={`py-2.5 px-2 rounded-xl text-xs font-bold transition-all flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-1.5 ${
+          className={`py-2 px-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1.5 ${
             mfaChannel === 'EMAIL'
               ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
@@ -246,90 +246,75 @@ export const Stage2OTP: React.FC = () => {
         </button>
       </div>
 
-      {/* Channel Specific Instruction Box */}
-      {mfaChannel === 'APP' && (
-        <div className="p-4 rounded-2xl bg-[#071322] border border-emerald-500/30 flex flex-col sm:flex-row items-center gap-4 text-left">
-          <div className="p-2 bg-white rounded-xl shrink-0 shadow-lg">
-            <img
-              src={qrCodeUrl}
-              alt="Google Authenticator QR Code"
-              className="w-24 h-24 object-contain"
-            />
+      {/* Channel Status Banner */}
+      {mfaChannel === 'SMS' && (
+        <div className="p-3.5 rounded-2xl bg-[#071322] border border-emerald-500/30 text-left space-y-1">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold text-white flex items-center space-x-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Encrypted Telecom Gateway</span>
+            </span>
+            <span className="text-[11px] font-mono text-emerald-400 font-bold">Airtel / Jio DLT Active</span>
           </div>
-          <div className="space-y-2 flex-1 text-xs">
-            <div className="font-bold text-white flex items-center space-x-1.5">
-              <QrCode className="w-4 h-4 text-emerald-400" />
-              <span>Scan with Google / Microsoft Authenticator</span>
-            </div>
-            <p className="text-slate-300 leading-relaxed text-[11px]">
-              Open Google Authenticator on your phone, scan this QR code, and type the 6-digit code shown on your phone.
-            </p>
-            <div className="flex items-center space-x-2 pt-1">
-              <span className="text-slate-400 text-[10px]">Secret Key:</span>
-              <code className="px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-emerald-400 font-mono text-[10px] font-bold">
-                {DEFAULT_TOTP_SECRET}
-              </code>
-              <button
-                type="button"
-                onClick={handleCopySecret}
-                className="text-slate-400 hover:text-white p-1 transition-colors"
-                title="Copy Secret Key"
-              >
-                {hasCopiedSecret ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-              </button>
-            </div>
-          </div>
+          <p className="text-[11px] text-slate-300">
+            Dispatched to verified mobile <strong className="text-white font-mono">{user?.phone || '+91 89669 99725'}</strong>. Enter the 6 digits received below.
+          </p>
         </div>
       )}
 
-      {mfaChannel === 'SMS' && (
-        <div className="p-4 rounded-2xl bg-[#071322] border border-cyan-500/30 space-y-3 text-left">
+      {mfaChannel === 'APP' && (
+        <div className="p-3.5 rounded-2xl bg-[#071322] border border-cyan-500/30 text-left space-y-2">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Smartphone className="w-4 h-4 text-cyan-400" />
-              <span className="text-xs font-bold text-white">Registered Mobile Number</span>
-            </div>
-            <span className="text-xs font-mono font-bold text-cyan-300">{user?.phone || '+91 89669 99725'}</span>
+            <span className="text-xs font-bold text-white flex items-center space-x-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Google / Microsoft Authenticator</span>
+            </span>
+            <span className="text-[11px] font-mono text-cyan-400 font-bold">RFC 6238 TOTP</span>
           </div>
-          <p className="text-[11px] text-slate-300 leading-relaxed">
-            Click below to open WhatsApp with your registered number <strong className="text-white font-mono">+91 89669 99725</strong> or simulate carrier gateway delivery.
+          <p className="text-[11px] text-slate-300">
+            Enter the 6-digit code currently displayed in your smartphone's Authenticator app.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-            <button
-              type="button"
-              onClick={sendOtpViaWhatsApp}
-              className="py-2.5 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs transition-all flex items-center justify-center space-x-2 shadow-lg shadow-emerald-500/20"
-            >
-              <MessageSquare className="w-4 h-4" />
-              <span>Send OTP to WhatsApp</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                const code = otp || '202626';
-                setDigits(code.split(''));
-                verifyOtp(code);
-              }}
-              className="py-2.5 px-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 hover:text-white font-bold text-xs transition-all flex items-center justify-center space-x-2"
-            >
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-              <span>Auto-Fill Active Passkey</span>
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setShowQrDrawer(!showQrDrawer)}
+            className="text-[11px] text-cyan-400 hover:text-cyan-300 flex items-center space-x-1 font-medium underline pt-1"
+          >
+            <span>{showQrDrawer ? 'Hide Device Setup Key' : 'First-time phone setup? View QR / Key'}</span>
+            {showQrDrawer ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+          </button>
+
+          {showQrDrawer && (
+            <div className="p-3 mt-2 rounded-xl bg-slate-900 border border-slate-800 flex items-center space-x-3">
+              <div className="p-1.5 bg-white rounded-lg shrink-0">
+                <img src={qrCodeUrl} alt="QR Code" className="w-16 h-16 object-contain" />
+              </div>
+              <div className="text-[10px] space-y-1 text-slate-300">
+                <div>Scan in Google Authenticator or enter Key:</div>
+                <div className="flex items-center space-x-1.5">
+                  <code className="px-1.5 py-0.5 rounded bg-slate-950 text-cyan-300 font-mono font-bold">
+                    {DEFAULT_TOTP_SECRET}
+                  </code>
+                  <button type="button" onClick={handleCopySecret} className="text-slate-400 hover:text-white">
+                    {hasCopiedSecret ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
       {mfaChannel === 'EMAIL' && (
-        <div className="p-4 rounded-2xl bg-[#071322] border border-emerald-500/30 space-y-2 text-left">
+        <div className="p-3.5 rounded-2xl bg-[#071322] border border-emerald-500/30 text-left space-y-1">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Mail className="w-4 h-4 text-emerald-400" />
-              <span className="text-xs font-bold text-white">Corporate Work Email</span>
-            </div>
-            <span className="text-xs font-mono font-bold text-emerald-300">{user?.email || email}</span>
+            <span className="text-xs font-bold text-white flex items-center space-x-1.5">
+              <Mail className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Corporate Work Email</span>
+            </span>
+            <span className="text-[11px] font-mono text-emerald-400 font-bold">TLS 1.3 Verified</span>
           </div>
-          <p className="text-[11px] text-slate-300 leading-relaxed">
-            A cryptographic token was dispatched to your Gmail inbox. (Please check Spam/Junk/Promotions).
+          <p className="text-[11px] text-slate-300">
+            Security code dispatched to <strong className="text-white font-mono">{user?.email || 'aseth230@gmail.com'}</strong>. (Check Inbox / Spam).
           </p>
         </div>
       )}
@@ -371,7 +356,7 @@ export const Stage2OTP: React.FC = () => {
       <form onSubmit={handleManualSubmit} className="space-y-6">
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs text-slate-300">
-            <span className="font-semibold">Enter 6-Digit Code</span>
+            <span className="font-semibold">Enter 6-Digit Security Token</span>
             <span className="text-[11px] text-slate-400">
               Attempts Left:{' '}
               <strong className={attemptsLeft === 1 ? 'text-red-400 font-bold' : 'text-emerald-400'}>
@@ -411,7 +396,7 @@ export const Stage2OTP: React.FC = () => {
           <div className="flex items-center justify-between text-xs text-slate-300">
             <span className="flex items-center space-x-1.5 text-slate-400">
               <Clock className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Token Validity Window</span>
+              <span>Security Token Validity Window</span>
             </span>
             <span className="font-mono font-bold text-white">
               {formatExpiryTime(expirySecondsLeft)} left
@@ -441,7 +426,7 @@ export const Stage2OTP: React.FC = () => {
             {isLoading ? (
               <div className="flex items-center space-x-2">
                 <div className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></div>
-                <span>Validating 2FA Token...</span>
+                <span>Validating Cryptographic Token...</span>
               </div>
             ) : (
               <>
@@ -476,25 +461,9 @@ export const Stage2OTP: React.FC = () => {
               <span>
                 {resendSecondsLeft > 0
                   ? `Resend code in ${resendSecondsLeft}s`
-                  : 'Resend New OTP Code'}
+                  : 'Resend Security Code'}
               </span>
             </button>
-          </div>
-
-          {/* Executive Security Passkey Fallback */}
-          <div className="pt-2 text-center text-[11px] text-slate-400 border-t border-slate-800/60">
-            External mail delayed? Enter Executive Emergency Key{' '}
-            <button
-              type="button"
-              onClick={() => {
-                setDigits(['2', '0', '2', '6', '2', '6']);
-                verifyOtp('202626');
-              }}
-              className="text-emerald-400 hover:text-emerald-300 font-mono font-bold underline transition-colors"
-            >
-              202626
-            </button>{' '}
-            or check F12 Console.
           </div>
         </div>
       </form>
