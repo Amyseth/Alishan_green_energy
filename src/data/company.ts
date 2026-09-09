@@ -20,13 +20,13 @@ export const COMPANY_INFO = {
     full: 'Khasra No: 20, Village: Seoni, Raipur, Chhattisgarh, India - 492101',
   },
   contact: {
-    phone: '+91 - 91712 00097',
+    phone: '+91 - 89669 99725',
     email: 'info@alishangreenenergy.com',
     supportEmail: 'technical@alishangreenenergy.com',
     salesEmail: 'sales@alishangreenenergy.com',
     workingHours: 'Monday – Saturday : 10am to 7pm',
-    whatsapp: '+91 - 91712 00097',
-    whatsappUrl: 'https://wa.me/919171200097',
+    whatsapp: '+91 - 89669 99725',
+    whatsappUrl: 'https://wa.me/918966999725',
   },
   certifications: [
     {

@@ -9,9 +9,9 @@ export const DEMO_USERS: Record<string, { profile: UserProfile; passwordHash: st
       id: 'usr_age_001',
       name: 'Amit Seth',
       email: 'aseth230@gmail.com',
-      phone: '+91 91712 00097',
+      phone: '+91 89669 99725',
       maskedEmail: 'a***0@gmail.com',
-      maskedPhone: '+91 91712 *****',
+      maskedPhone: '+91 89669 *****',
       role: 'Chief Technology & Security Officer (CTSO)',
       department: 'Executive Leadership & Solar Engineering',
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
@@ -23,14 +23,14 @@ export const DEMO_USERS: Record<string, { profile: UserProfile; passwordHash: st
     },
     passwordHash: 'Alishan@2026',
   },
-  '9171200097': {
+  '8966999725': {
     profile: {
       id: 'usr_age_001',
       name: 'Amit Seth',
       email: 'aseth230@gmail.com',
-      phone: '+91 91712 00097',
+      phone: '+91 89669 99725',
       maskedEmail: 'a***0@gmail.com',
-      maskedPhone: '+91 91712 *****',
+      maskedPhone: '+91 89669 *****',
       role: 'Chief Technology & Security Officer (CTSO)',
       department: 'Executive Leadership & Solar Engineering',
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
@@ -42,14 +42,33 @@ export const DEMO_USERS: Record<string, { profile: UserProfile; passwordHash: st
     },
     passwordHash: 'Alishan@2026',
   },
-  '+919171200097': {
+  '+918966999725': {
     profile: {
       id: 'usr_age_001',
       name: 'Amit Seth',
       email: 'aseth230@gmail.com',
-      phone: '+91 91712 00097',
+      phone: '+91 89669 99725',
       maskedEmail: 'a***0@gmail.com',
-      maskedPhone: '+91 91712 *****',
+      maskedPhone: '+91 89669 *****',
+      role: 'Chief Technology & Security Officer (CTSO)',
+      department: 'Executive Leadership & Solar Engineering',
+      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
+      location: 'Kamal Vihar HQ & Seoni Plant, Raipur',
+      securityClearance: 'Level 4 - Executive',
+      lastLogin: new Date(Date.now() - 3600000 * 4).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      ipAddress: '103.21.244.18 (Raipur Industrial Zone)',
+      sessionExpiry: new Date(Date.now() + 3600000 * 8).toLocaleTimeString('en-IN'),
+    },
+    passwordHash: 'Alishan@2026',
+  },
+  '+91 89669 99725': {
+    profile: {
+      id: 'usr_age_001',
+      name: 'Amit Seth',
+      email: 'aseth230@gmail.com',
+      phone: '+91 89669 99725',
+      maskedEmail: 'a***0@gmail.com',
+      maskedPhone: '+91 89669 *****',
       role: 'Chief Technology & Security Officer (CTSO)',
       department: 'Executive Leadership & Solar Engineering',
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
@@ -66,9 +85,9 @@ export const DEMO_USERS: Record<string, { profile: UserProfile; passwordHash: st
       id: 'usr_age_001',
       name: 'Amit Seth',
       email: 'aseth230@gmail.com',
-      phone: '+91 91712 00097',
+      phone: '+91 89669 99725',
       maskedEmail: 'a***0@gmail.com',
-      maskedPhone: '+91 91712 *****',
+      maskedPhone: '+91 89669 *****',
       role: 'Chief Technology & Security Officer (CTSO)',
       department: 'Executive Leadership & Solar Engineering',
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
@@ -110,7 +129,7 @@ const INITIAL_AUDIT_LOGS: SecurityAuditLog[] = [
     ipAddress: '103.21.244.1 (Gateway)',
     location: 'Raipur, CG, India',
     protocol: 'TLS 1.3 / AES-256',
-    details: '2FA Policy active: Email, SMS/Phone, and Google Authenticator TOTP enabled.',
+    details: '2FA Policy active: Email, Phone/WhatsApp (+91 89669 99725), and Google Authenticator enabled.',
   },
   {
     id: 'log_02',
@@ -153,8 +172,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [stage, setStage] = useState<AuthState['stage']>('CREDENTIALS');
   const [email, setEmail] = useState('');
   const [user, setUser] = useState<UserProfile | null>(null);
-  const [mfaChannel, setMfaChannel] = useState<MfaChannel>('APP');
-  const [customPhone, setCustomPhone] = useState('+91 91712 00097');
+  const [mfaChannel, setMfaChannel] = useState<MfaChannel>('SMS');
+  const [customPhone, setCustomPhone] = useState('+91 89669 99725');
   const [otp, setOtp] = useState('');
   const [otpCreatedAt, setOtpCreatedAt] = useState<number | null>(null);
   const [otpExpiresAt, setOtpExpiresAt] = useState<number | null>(null);
@@ -419,11 +438,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   // Dispatch OTP via WhatsApp link
   const sendOtpViaWhatsApp = () => {
     const activeToken = otp || '202626';
-    const targetPhone = (customPhone || user?.phone || '9171200097').replace(/\D/g, '');
+    const targetPhone = (customPhone || user?.phone || '918966999725').replace(/\D/g, '');
+    const fullPhone = targetPhone.startsWith('91') ? targetPhone : `91${targetPhone}`;
     const msg = encodeURIComponent(`*ALISHAN GREEN ENERGY - 2FA SECURITY GATEWAY*\nYour One-Time Verification Passkey is: *${activeToken}*\nValid for 5 minutes.`);
-    window.open(`https://wa.me/${targetPhone}?text=${msg}`, '_blank');
-    setSuccessNotification(`WhatsApp dispatch opened for ${user?.phone || customPhone}.`);
-    addAuditLog('2FA Dispatched via WhatsApp', 'SUCCESS', `Token sent to mobile ${user?.phone || customPhone}.`);
+    const url = `https://api.whatsapp.com/send?phone=${fullPhone}&text=${msg}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+    setSuccessNotification(`WhatsApp dispatch opened for +91 89669 99725.`);
+    addAuditLog('2FA Dispatched via WhatsApp', 'SUCCESS', `Token sent to mobile +91 89669 99725.`);
   };
 
   // Resend OTP

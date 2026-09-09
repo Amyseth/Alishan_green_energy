@@ -60,7 +60,7 @@ export const Stage1Credentials: React.FC = () => {
                 setEmail(e.target.value);
                 if (error) clearNotifications();
               }}
-              placeholder="aseth230@gmail.com or +91 91712 00097"
+              placeholder="aseth230@gmail.com or 8966999725"
               className="w-full bg-[#071322] border border-slate-700/80 focus:border-emerald-500 rounded-xl pl-10 pr-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none transition-all focus:ring-1 focus:ring-emerald-500/50 shadow-inner"
             />
           </div>

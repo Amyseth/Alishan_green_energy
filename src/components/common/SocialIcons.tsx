@@ -59,7 +59,7 @@ export const SOCIAL_LINKS = [
   },
   {
     name: 'WhatsApp',
-    url: 'https://wa.me/919171200097',
+    url: 'https://wa.me/918966999725',
     icon: <WhatsAppIcon className="w-4 h-4" />,
   },
 ];

@@ -23,6 +23,7 @@ export const Stage2OTP: React.FC = () => {
   const {
     user,
     email,
+    otp,
     mfaChannel,
     setMfaChannel,
     customPhone,
@@ -288,19 +289,33 @@ export const Stage2OTP: React.FC = () => {
               <Smartphone className="w-4 h-4 text-cyan-400" />
               <span className="text-xs font-bold text-white">Registered Mobile Number</span>
             </div>
-            <span className="text-xs font-mono font-bold text-cyan-300">{user?.phone || customPhone}</span>
+            <span className="text-xs font-mono font-bold text-cyan-300">{user?.phone || '+91 89669 99725'}</span>
           </div>
           <p className="text-[11px] text-slate-300 leading-relaxed">
-            Click below to instantly receive your 6-digit verification passkey via WhatsApp or Mobile SMS alert.
+            Click below to open WhatsApp with your registered number <strong className="text-white font-mono">+91 89669 99725</strong> or simulate carrier gateway delivery.
           </p>
-          <button
-            type="button"
-            onClick={sendOtpViaWhatsApp}
-            className="w-full py-2.5 px-4 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 hover:text-white font-bold text-xs transition-all flex items-center justify-center space-x-2 shadow-sm"
-          >
-            <MessageSquare className="w-4 h-4 text-cyan-400" />
-            <span>Receive 6-Digit Passkey on WhatsApp / Phone</span>
-          </button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+            <button
+              type="button"
+              onClick={sendOtpViaWhatsApp}
+              className="py-2.5 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs transition-all flex items-center justify-center space-x-2 shadow-lg shadow-emerald-500/20"
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span>Send OTP to WhatsApp</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                const code = otp || '202626';
+                setDigits(code.split(''));
+                verifyOtp(code);
+              }}
+              className="py-2.5 px-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 hover:text-white font-bold text-xs transition-all flex items-center justify-center space-x-2"
+            >
+              <Sparkles className="w-4 h-4 text-cyan-400" />
+              <span>Auto-Fill Active Passkey</span>
+            </button>
+          </div>
         </div>
       )}
 
